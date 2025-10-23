@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Oxanium:wght@400;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@300;400;500;600;700&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -7,22 +7,86 @@
 @layer base {
   :root {
     color-scheme: dark;
-    font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-    background-color: #080b1a;
+    font-family: 'Montserrat', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background-color: theme('colors.void');
   }
 
   body {
-    @apply bg-midnight text-white m-0 min-h-screen antialiased;
+    @apply bg-void text-snow m-0 min-h-screen antialiased;
   }
 
   ::selection {
-    background: theme('colors.sunset');
-    color: theme('colors.neon');
+    background: theme('colors.fuchsia');
+    color: theme('colors.void');
   }
 }
 
 @layer components {
   .glass-panel {
-    @apply bg-white/5 backdrop-blur-md border border-white/10 shadow-glow;
+    @apply bg-carbon/90 backdrop-blur-md border border-white/5 shadow-lg;
+  }
+}
+
+@keyframes float-slow {
+  0%, 100% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(0, -12px, 0);
+  }
+}
+
+@keyframes hero-shimmer {
+  0%, 100% {
+    opacity: 0.55;
+    transform: scale(1) rotate(0deg);
+  }
+  50% {
+    opacity: 0.8;
+    transform: scale(1.05) rotate(2deg);
+  }
+}
+
+@keyframes auroraPulse {
+  0% {
+    transform: scale(1);
+    opacity: 0.35;
+  }
+  50% {
+    transform: scale(1.05);
+    opacity: 0.5;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 0.35;
+  }
+}
+
+@keyframes sponsorFade {
+  0% {
+    opacity: 0;
+    transform: translateY(16px) scale(0.98);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@layer utilities {
+  .hero-float {
+    animation: float-slow 14s ease-in-out infinite;
+  }
+
+  .hero-shimmer {
+    animation: hero-shimmer 18s ease-in-out infinite;
+  }
+
+  .animate-aurora {
+    animation: auroraPulse 22s ease-in-out infinite;
+  }
+
+  .animate-sponsor {
+    animation: sponsorFade 0.7s ease-out forwards;
   }
 }

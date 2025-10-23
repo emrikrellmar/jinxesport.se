@@ -4,18 +4,18 @@ export default {
   theme: {
     extend: {
       colors: {
-        midnight: '#080B1A',
-        cobalt: '#1B3BFF',
-        neon: '#3CF8FF',
-        sunset: '#FF006E',
-        graphite: '#101424',
+        void: '#000000',
+        carbon: '#1A1A1A',
+        ash: '#101010',
+        snow: '#FFFFFF',
+        fuchsia: '#FF007F',
       },
       fontFamily: {
-        display: ['"Oxanium"', 'system-ui', 'sans-serif'],
-        body: ['"Inter"', 'system-ui', 'sans-serif'],
+        display: ['"Bebas Neue"', 'sans-serif'],
+        body: ['"Montserrat"', 'system-ui', 'sans-serif'],
       },
       boxShadow: {
-        glow: '0 0 25px rgba(60, 248, 255, 0.45)',
+        glow: '0 0 35px rgba(255, 0, 127, 0.35)',
       },
     },
   },

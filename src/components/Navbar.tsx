@@ -1,119 +1,123 @@
-import { useState } from 'react';
-import { NavLink } from 'react-router-dom';
-import { AnimatePresence, motion } from 'framer-motion';
+﻿import { useState } from "react";
+import { NavLink } from "react-router-dom";
+import logo from "../assets/jinx_logo.png";
+import iconX from "../assets/xlogo.png";
+import iconDiscord from "../assets/discordlogo.png";
+
+type ExternalLink = {
+  label: string;
+  href: string;
+  variant: "primary" | "ghost";
+  icon?: string;
+  iconOnly?: boolean;
+};
 
 const navItems = [
-  { label: 'Home', to: '/' },
-  { label: 'Teams', to: '/teams' },
-  { label: 'Main', to: '/teams/main' },
-  { label: 'Academy', to: '/teams/academy' },
+  { label: "Home", to: "/" },
+  { label: "Main Roster", to: "/teams/main" },
+  { label: "Academy", to: "/teams/academy" },
+];
+
+const externalLinks: ExternalLink[] = [
+  { label: "Merch", href: "https://www.netshirt.se/foreningsklader/jinx-e-sport", variant: "ghost" },
+  { label: "Discord", href: "https://discord.com/invite/M39E4MVAeN", variant: "ghost", icon: iconDiscord, iconOnly: true },
+  { label: "X/Twitter", href: "https://x.com/jinxesport", variant: "ghost", icon: iconX, iconOnly: true },
 ];
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const linkBase = 'relative px-1 py-2 text-xs font-semibold uppercase tracking-[0.4em] transition-colors duration-200';
+  const linkBase =
+    "relative inline-flex items-center justify-center px-1 py-2 text-sm font-semibold uppercase tracking-[0.45em]";
 
   const renderLink = (label: string, to: string, onClick?: () => void) => (
     <NavLink
       key={to}
       to={to}
       className={({ isActive }) =>
-        [linkBase, isActive ? 'text-neon' : 'text-white/60 hover:text-white'].join(' ')
+        [linkBase, isActive ? "text-fuchsia" : "text-white/60 hover:text-snow"].join(" ")
       }
       onClick={onClick}
     >
-      {({ isActive }) => (
-        <span className="relative inline-flex flex-col items-center gap-1">
-          <span>{label}</span>
-          <AnimatePresence>
-            {isActive && (
-              <motion.span
-                layoutId="nav-indicator"
-                className="h-0.5 w-full rounded-full bg-gradient-to-r from-neon via-white to-sunset"
-                initial={{ opacity: 0, scaleX: 0 }}
-                animate={{ opacity: 1, scaleX: 1 }}
-                exit={{ opacity: 0, scaleX: 0 }}
-                transition={{ duration: 0.25 }}
-              />
-            )}
-          </AnimatePresence>
-        </span>
-      )}
+      {label}
     </NavLink>
   );
 
+  const renderExternal = (link: ExternalLink, onClick?: () => void) => {
+    const baseClasses = link.iconOnly
+      ? "inline-flex items-center justify-center text-snow transition hover:text-fuchsia"
+      : "inline-flex items-center justify-center rounded-full border px-5 py-2 text-[0.75rem] font-semibold uppercase tracking-[0.45em]";
+    const variants = link.iconOnly
+      ? ""
+      : {
+          primary: "border-fuchsia bg-fuchsia text-void hover:bg-white hover:border-white",
+          ghost: "border-white/30 text-snow hover:border-fuchsia hover:text-fuchsia",
+        }[link.variant];
+
+    return (
+      <a
+        key={link.href}
+        href={link.href}
+        target="_blank"
+        rel="noreferrer"
+        className={[baseClasses, variants].filter(Boolean).join(" ")}
+        onClick={onClick}
+      >
+        {link.icon ? (
+          <>
+            <img src={link.icon} alt="X" className="h-10 w-10 object-contain" />
+            {link.iconOnly ? <span className="sr-only">{link.label}</span> : null}
+          </>
+        ) : (
+          link.label
+        )}
+      </a>
+    );
+  };
+
   return (
-    <header className="fixed inset-x-0 top-0 z-50 border-b border-white/10 bg-black/60 py-3 backdrop-blur-2xl">
-      <div className="mx-auto flex w-full max-w-6xl items-center justify-between px-6 md:px-8">
-        <NavLink to="/" className="flex items-center gap-3 text-white">
-          <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-gradient-to-br from-cobalt via-neon to-sunset font-display text-lg font-bold text-black shadow-glow">
-            JE
+    <header className="fixed inset-x-0 top-0 z-50 border-b border-white/10 bg-carbon/95 py-4 backdrop-blur-xl">
+      <div className="flex w-full items-center justify-between px-6 md:px-12">
+        <NavLink to="/" className="flex items-center gap-3 text-snow">
+          <div className="flex h-11 w-11 items-center justify-center">
+            <img src={logo} alt="Jinx Esport logo" className="h-full w-full object-contain" />
           </div>
-          <div className="hidden flex-col leading-tight md:flex">
-            <span className="font-display text-sm uppercase tracking-[0.35em] text-white">Jinx Esport</span>
-            <span className="text-xs uppercase tracking-[0.6em] text-white/50">Forged In Clutch</span>
-          </div>
+          <span className="hidden font-display text-lg uppercase tracking-[0.35em] text-snow md:inline">Jinx Esport</span>
         </NavLink>
-        <nav className="hidden items-center gap-8 md:flex">
+
+        <nav className="hidden flex-1 items-center justify-center gap-8 md:flex">
           {navItems.map((item) => renderLink(item.label, item.to))}
-          <a
-            href="https://discord.com"
-            target="_blank"
-            rel="noreferrer"
-            className="inline-flex items-center rounded-full border border-white/20 bg-white/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.4em] text-white transition hover:border-neon/60 hover:bg-neon/10 hover:text-neon"
-          >
-            Join Discord
-          </a>
         </nav>
+
+        <div className="hidden items-center justify-end gap-3 md:flex">
+          {externalLinks.map((link) => renderExternal(link))}
+        </div>
+
         <button
           type="button"
           aria-label="Toggle navigation"
           onClick={() => setIsOpen((prev) => !prev)}
-          className="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-white/10 bg-white/5 text-white transition hover:border-neon/40 hover:text-neon md:hidden"
+          className="inline-flex h-11 w-11 items-center justify-center rounded-2xl border border-white/10 bg-ash/70 text-snow md:hidden"
         >
-          <motion.span
-            initial={false}
-            animate={isOpen ? { rotate: 45, y: 2 } : { rotate: 0, y: 0 }}
-            className="absolute block h-0.5 w-5 rounded-full bg-current"
-          />
-          <motion.span
-            initial={false}
-            animate={isOpen ? { opacity: 0 } : { opacity: 1 }}
-            className="absolute block h-0.5 w-5 rounded-full bg-current"
-          />
-          <motion.span
-            initial={false}
-            animate={isOpen ? { rotate: -45, y: -2 } : { rotate: 0, y: 0 }}
-            className="absolute block h-0.5 w-5 rounded-full bg-current"
-          />
+          <span className="text-xl">{isOpen ? "\u00D7" : "\u2261"}</span>
         </button>
       </div>
-      <AnimatePresence>
-        {isOpen && (
-          <motion.nav
-            initial={{ opacity: 0, y: -12 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -12 }}
-            transition={{ duration: 0.25 }}
-            className="border-t border-white/10 bg-black/90 px-6 pb-6 pt-4 md:hidden"
-          >
-            <div className="flex flex-col gap-4">
-              {navItems.map((item) => renderLink(item.label, item.to, () => setIsOpen(false)))}
-              <a
-                href="https://discord.com"
-                target="_blank"
-                rel="noreferrer"
-                className="inline-flex w-full items-center justify-center rounded-full border border-white/10 bg-white/10 px-4 py-3 text-xs font-semibold uppercase tracking-[0.4em] text-white transition hover:border-neon/60 hover:bg-neon/10 hover:text-neon"
-                onClick={() => setIsOpen(false)}
-              >
-                Join Discord
-              </a>
+
+      {isOpen && (
+        <nav className="border-t border-white/10 bg-carbon px-6 pb-6 pt-4 md:hidden">
+          <div className="flex flex-col gap-4 text-center">
+            {navItems.map((item) => renderLink(item.label, item.to, () => setIsOpen(false)))}
+            <div className="mt-2 grid gap-3">
+              {externalLinks.map((link) => renderExternal(link, () => setIsOpen(false)))}
             </div>
-          </motion.nav>
-        )}
-      </AnimatePresence>
+          </div>
+        </nav>
+      )}
     </header>
   );
 };
 
 export default Navbar;
+
+
+
+
