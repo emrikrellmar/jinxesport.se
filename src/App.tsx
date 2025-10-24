@@ -17,7 +17,7 @@ const App = () => {
   }, [location.pathname]);
 
   return (
-    <div className="relative min-h-screen bg-void text-snow">
+    <div className="relative flex min-h-screen flex-col bg-void text-snow">
       <div className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
         <div className="absolute -top-32 left-1/2 h-80 w-80 -translate-x-1/2 rounded-full bg-fuchsia/15 blur-[140px]" />
         <div className="absolute -bottom-32 right-10 h-72 w-72 rounded-full bg-fuchsia/10 blur-[160px]" />
