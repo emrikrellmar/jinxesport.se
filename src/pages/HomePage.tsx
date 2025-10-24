@@ -18,10 +18,10 @@ const HomePage = () => {
 
   return (
     <div className="space-y-20">
-      <section className="glass-panel relative overflow-hidden rounded-[2.75rem] border border-white/5 p-10 shadow-[0_26px_70px_rgba(255,0,127,0.24)] md:p-16">
+      <section className="relative overflow-visible rounded-[2.75rem] bg-carbon/90 p-10 shadow-[0_48px_140px_rgba(255,0,127,0.28)] md:p-16">
         <div className="relative grid gap-12 md:grid-cols-[1.1fr_0.9fr] md:items-center">
           <div className="space-y-6">
-            <p className="text-xs uppercase tracking-[0.4em] text-white/50">Swedish Counter-Strike</p>
+            <p className="text-xs uppercase tracking-[0.4em] text-white/50">Swedish esports and community</p>
             <h1 className="font-display text-5xl uppercase tracking-[0.2em] text-snow md:text-6xl">Jinx Esport</h1>
             <div className="flex flex-col gap-4">
               <div className="flex flex-wrap gap-3">
@@ -33,7 +33,7 @@ const HomePage = () => {
                 </Link>
                 <Link
                   to="/about"
-                  className="inline-flex items-center rounded-full border border-white/20 px-6 py-3 text-xs font-semibold uppercase tracking-[0.35em] text-snow transition hover:border-fuchsia hover:text-fuchsia"
+                  className="inline-flex items-center rounded-full bg-white/10 px-6 py-3 text-xs font-semibold uppercase tracking-[0.35em] text-snow transition hover:bg-white/20 hover:text-fuchsia"
                 >
                   About
                 </Link>
@@ -41,7 +41,7 @@ const HomePage = () => {
                   href="https://www.netshirt.se/foreningsklader/jinx-e-sport"
                   target="_blank"
                   rel="noreferrer"
-                  className="inline-flex items-center rounded-full border border-white/20 px-6 py-3 text-xs font-semibold uppercase tracking-[0.35em] text-snow transition hover:border-fuchsia hover:text-fuchsia"
+                  className="inline-flex items-center rounded-full bg-white/10 px-6 py-3 text-xs font-semibold uppercase tracking-[0.35em] text-snow transition hover:bg-white/20 hover:text-fuchsia"
                 >
                   Merch
                 </a>
@@ -69,7 +69,10 @@ const HomePage = () => {
             </div>
           </div>
           <div className="relative flex justify-end">
-            <div className="hero-shimmer pointer-events-none absolute -inset-12 -z-10 rounded-[3.5rem] bg-[radial-gradient(circle_at_center,_rgba(255,0,127,0.32)_0%,_rgba(255,0,127,0.08)_55%,_transparent_80%)]" />
+            <div className="hero-shimmer pointer-events-none absolute -inset-[6rem] -z-10 rounded-[5rem]">
+              <div className="absolute inset-[-18%] animate-heroPulse-outer rounded-[4.5rem] bg-[radial-gradient(circle_at_center,_rgba(236,72,153,0.48)_0%,_rgba(236,72,153,0.22)_55%,_rgba(236,72,153,0.08)_82%,_transparent_100%)]" />
+              <div className="absolute inset-[-26%] animate-heroPulse-inner rounded-[5.5rem] bg-[radial-gradient(circle_at_center,_rgba(220,38,38,0.7)_0%,_rgba(220,38,38,0.28)_58%,_rgba(220,38,38,0.1)_85%,_transparent_100%)]" />
+            </div>
             <img
               src={jerseyImage}
               alt="Jinx Esport jersey"
@@ -123,7 +126,7 @@ const HomePage = () => {
                 return (
                 <div
                   key={`${sponsor.name}-${index}`}
-                  className="flex min-w-[7.5rem] shrink-0 items-center justify-center rounded-[1.35rem] border border-white/10 bg-white/5 px-5 py-4 shadow-[0_12px_28px_rgba(255,0,127,0.14)] sm:min-w-[9rem] sm:rounded-[1.6rem] sm:px-6 sm:py-5 md:min-w-[10rem] md:rounded-[1.75rem] md:px-8 md:py-6 md:shadow-[0_18px_45px_rgba(255,0,127,0.14)]"
+                  className="flex min-w-[7.5rem] shrink-0 items-center justify-center rounded-[1.35rem] border border-white/10 bg-white/5 px-5 py-4 sm:min-w-[9rem] sm:rounded-[1.6rem] sm:px-6 sm:py-5 md:min-w-[10rem] md:rounded-[1.75rem] md:px-8 md:py-6"
                 >
                   <img
                     src={sponsor.logo}
