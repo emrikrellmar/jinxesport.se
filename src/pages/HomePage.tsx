@@ -1,5 +1,4 @@
-﻿import { useEffect, useRef, useState } from "react";
-import { Link } from "react-router-dom";
+﻿import { Link } from "react-router-dom";
 import jerseyImage from "../assets/playerjersey.png";
 import sponsorPrimary from "../assets/sponsor2.png";
 import sponsorSecondary from "../assets/sponsor_1png.png";
@@ -9,33 +8,13 @@ import iconDiscord from "../assets/discordlogo.png";
 import XFeed from "../components/XFeed";
 
 const sponsors = [
-  { name: "Ajotech AB", logo: sponsorPrimary },
-  { name: "JNIX Collective", logo: sponsorSecondary },
+  { name: "Ajotech AB", logo: sponsorPrimary, size: "large" as const },
+  { name: "JNIX Collective", logo: sponsorSecondary, size: "large" as const },
   { name: "Sponsor 3", logo: sponsorTertiary },
 ];
 
 const HomePage = () => {
-  const sponsorsRef = useRef<HTMLDivElement | null>(null);
-  const [sponsorsVisible, setSponsorsVisible] = useState(false);
   const marqueeSponsors = [...sponsors, ...sponsors];
-
-  useEffect(() => {
-    const node = sponsorsRef.current;
-    if (!node) return;
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setSponsorsVisible(true);
-          observer.disconnect();
-        }
-      },
-      { threshold: 0.5 }
-    );
-
-    observer.observe(node);
-    return () => observer.disconnect();
-  }, []);
 
   return (
     <div className="space-y-20">
@@ -139,16 +118,24 @@ const HomePage = () => {
       <section className="rounded-[2.75rem] border border-white/10 bg-carbon/95 p-10 shadow-[0_22px_60px_rgba(255,0,127,0.16)] md:p-16">
         <div className="space-y-6 text-center">
           <p className="text-xs uppercase tracking-[0.4em] text-white/50">Partners & Sponsors</p>
-          <div ref={sponsorsRef} className="relative overflow-hidden">
-            <div className={`sponsor-track ${sponsorsVisible ? "" : "sponsor-track-paused"}`}>
-              {marqueeSponsors.map((sponsor, index) => (
+          <div className="relative overflow-hidden">
+            <div className="sponsor-track">
+              {marqueeSponsors.map((sponsor, index) => {
+                const sizeClass = sponsor.size === "large" ? "h-24 md:h-28" : "h-20";
+                return (
                 <div
                   key={`${sponsor.name}-${index}`}
                   className="flex min-w-[10rem] shrink-0 items-center justify-center rounded-[1.75rem] border border-white/10 bg-white/5 px-8 py-6 shadow-[0_18px_45px_rgba(255,0,127,0.14)]"
                 >
-                  <img src={sponsor.logo} alt={sponsor.name} className="h-20 w-auto object-contain" loading="lazy" />
+                  <img
+                    src={sponsor.logo}
+                    alt={sponsor.name}
+                    className={`${sizeClass} w-auto object-contain`}
+                    loading="lazy"
+                  />
                 </div>
-              ))}
+              );
+              })}
             </div>
           </div>
         </div>
