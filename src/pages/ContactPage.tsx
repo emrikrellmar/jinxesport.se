@@ -2,7 +2,6 @@ import mailIcon from '../assets/mailicon.webp';
 import braxenPhoto from '../assets/Braxen.png';
 import silhouetteMale from '../assets/silhouette.png';
 import catrinPhoto from '../assets/catrin.png';
-import silhouetteFemale from '../assets/womansilhouette.png';
 
 const contacts = [
   {
