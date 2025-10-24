@@ -1,14 +1,15 @@
+import mailIcon from '../assets/mailicon.webp';
 import braxenPhoto from '../assets/Braxen.png';
 import silhouetteMale from '../assets/silhouette.png';
+import catrinPhoto from '../assets/catrin.png';
 import silhouetteFemale from '../assets/womansilhouette.png';
-import jinxLogo from '../assets/jinx_logo.png';
 
 const contacts = [
   {
     name: 'General Contact',
     role: 'All inquiries',
     email: 'info@jinxesport.se',
-    avatar: jinxLogo,
+    avatar: mailIcon,
   },
   {
     name: 'Jonas Johansson',
@@ -26,7 +27,7 @@ const contacts = [
     name: 'Catrin Lidström',
     role: 'Treasurer',
     email: 'catrin.lidstrom@jinxesport.se',
-    avatar: silhouetteFemale,
+    avatar: catrinPhoto,
   },
 ];
 
