@@ -95,9 +95,11 @@ const Navbar = () => {
         <nav className="hidden flex-1 items-center justify-center gap-6 md:flex">
           {navStructure.map((item, index) =>
             item.type === "divider" ? (
-              <span key={`divider-${index}`} className="text-white/30">
-                ┃
-              </span>
+              <span
+                key={`divider-${index}`}
+                className="hidden h-4 w-px bg-white/25 md:inline-block"
+                aria-hidden="true"
+              />
             ) : (
               renderLink(item.label, item.to)
             )
@@ -123,9 +125,11 @@ const Navbar = () => {
           <div className="flex flex-col gap-4 text-center">
             {navStructure.map((item, index) =>
               item.type === "divider" ? (
-                <span key={`divider-mobile-${index}`} className="mx-auto w-12 border-t border-white/15 pt-1 text-center text-white/40">
-                  ┃
-                </span>
+                <div
+                  key={`divider-mobile-${index}`}
+                  className="mx-auto w-16 border-t border-white/15"
+                  aria-hidden="true"
+                />
               ) : (
                 renderLink(item.label, item.to, () => setIsOpen(false))
               )

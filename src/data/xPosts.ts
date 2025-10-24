@@ -12,8 +12,8 @@ export type XPost = {
   };
 };
 
-// Manually curated list of the latest public posts from @jinxesport.
-// Update this file whenever you want to refresh the feed.
+// Lightweight fallback for @jinxesport posts.
+// The live feed pulls real data at runtime; this array is only used when the API is unavailable.
 export const xPosts: XPost[] = [
   {
     id: '1981439100856009208',

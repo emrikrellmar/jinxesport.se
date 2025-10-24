@@ -85,7 +85,7 @@
   }
 
   .sponsor-track {
-    @apply inline-flex w-max items-center gap-8;
+    @apply inline-flex w-max items-center;
     animation: sponsorMarquee 32s linear infinite;
     will-change: transform;
   }

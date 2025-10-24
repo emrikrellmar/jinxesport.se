@@ -1,8 +1,45 @@
-import { xPosts } from '../data/xPosts';
+import { useEffect, useState } from 'react';
+import type { XPost } from '../data/xPosts';
+import { xPosts as fallbackPosts } from '../data/xPosts';
 import jinxLogo from '../assets/jinx_logo.png';
 
 const XFeed = () => {
-  if (!xPosts.length) {
+  const [posts, setPosts] = useState<XPost[]>(fallbackPosts);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
+
+  useEffect(() => {
+    let isMounted = true;
+    const load = async () => {
+      try {
+        const response = await fetch('/api/twitter-timeline');
+        if (!response.ok) {
+          throw new Error(`Request failed with status ${response.status}`);
+        }
+
+        const data = (await response.json()) as { posts?: XPost[] };
+        if (isMounted && data.posts?.length) {
+          setPosts(data.posts);
+        }
+      } catch (err) {
+        if (isMounted) {
+          setError(true);
+        }
+      } finally {
+        if (isMounted) {
+          setLoading(false);
+        }
+      }
+    };
+
+    void load();
+
+    return () => {
+      isMounted = false;
+    };
+  }, []);
+
+  if (!posts.length && !loading) {
     return (
       <div className="rounded-2xl border border-white/10 bg-carbon/80 p-6 text-sm text-white/60">
         No X posts to show yet. Follow{' '}
@@ -20,11 +57,11 @@ const XFeed = () => {
   }
 
   return (
-    <div className="grid gap-6 lg:grid-cols-3">
-      {xPosts.slice(0, 3).map((post) => (
+    <div className="grid gap-8 lg:grid-cols-3">
+      {posts.slice(0, 3).map((post) => (
         <article
           key={post.id}
-          className="flex flex-col gap-4 rounded-[2rem] border border-white/10 bg-carbon/80 p-6 shadow-[0_25px_55px_rgba(0,0,0,0.35)]"
+          className="flex flex-col gap-4 rounded-[2rem] border border-white/10 bg-carbon/85 p-6 shadow-[0_25px_55px_rgba(0,0,0,0.35)]"
         >
           <header className="flex items-start gap-3">
             <div className="flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-carbon/80">

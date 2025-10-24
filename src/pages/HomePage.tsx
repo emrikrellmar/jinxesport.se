@@ -109,9 +109,7 @@ const HomePage = () => {
               See the latest three posts straight from X. New updates drop here the moment they go live.
             </p>
           </div>
-          <div className="overflow-hidden rounded-[2.25rem] border border-white/10 bg-ash/60 p-4">
-            <XFeed />
-          </div>
+          <XFeed />
         </div>
       </section>
 
@@ -119,13 +117,13 @@ const HomePage = () => {
         <div className="space-y-6 text-center">
           <p className="text-xs uppercase tracking-[0.4em] text-white/50">Partners & Sponsors</p>
           <div className="relative overflow-hidden">
-            <div className="sponsor-track">
+            <div className="sponsor-track gap-6 md:gap-8">
               {marqueeSponsors.map((sponsor, index) => {
-                const sizeClass = sponsor.size === "large" ? "h-24 md:h-28" : "h-20";
+                const sizeClass = sponsor.size === "large" ? "h-16 sm:h-20 md:h-24 xl:h-28" : "h-14 sm:h-16 md:h-20";
                 return (
                 <div
                   key={`${sponsor.name}-${index}`}
-                  className="flex min-w-[10rem] shrink-0 items-center justify-center rounded-[1.75rem] border border-white/10 bg-white/5 px-8 py-6 shadow-[0_18px_45px_rgba(255,0,127,0.14)]"
+                  className="flex min-w-[7.5rem] shrink-0 items-center justify-center rounded-[1.35rem] border border-white/10 bg-white/5 px-5 py-4 shadow-[0_12px_28px_rgba(255,0,127,0.14)] sm:min-w-[9rem] sm:rounded-[1.6rem] sm:px-6 sm:py-5 md:min-w-[10rem] md:rounded-[1.75rem] md:px-8 md:py-6 md:shadow-[0_18px_45px_rgba(255,0,127,0.14)]"
                 >
                   <img
                     src={sponsor.logo}
