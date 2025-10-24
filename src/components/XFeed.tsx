@@ -6,7 +6,6 @@ import jinxLogo from '../assets/jinx_logo.png';
 const XFeed = () => {
   const [posts, setPosts] = useState<XPost[]>(fallbackPosts);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(false);
 
   useEffect(() => {
     let isMounted = true;
@@ -22,8 +21,8 @@ const XFeed = () => {
           setPosts(data.posts);
         }
       } catch (err) {
-        if (isMounted) {
-          setError(true);
+        if (import.meta.env.DEV) {
+          console.warn('Falling back to cached X posts:', err);
         }
       } finally {
         if (isMounted) {
