@@ -49,7 +49,7 @@ const ContactPage = () => (
             className="flex flex-col items-center rounded-2xl border border-white/10 bg-ash/60 p-6 text-center shadow-[0_18px_45px_rgba(255,0,127,0.14)]"
           >
             {contact.avatar ? (
-              <div className="mb-4 flex h-24 w-24 items-center justify-center overflow-hidden rounded-full border border-white/10 bg-carbon/70 p-2">
+              <div className="mb-4 flex h-24 w-24 items-center justify-center overflow-hidden rounded-full border border-white/10 bg-carbon/70">
                 <img src={contact.avatar} alt={`${contact.name} portrait`} className="h-full w-full object-cover" />
               </div>
             ) : null}
