@@ -62,14 +62,12 @@
   }
 }
 
-@keyframes sponsorFade {
+@keyframes sponsorMarquee {
   0% {
-    opacity: 0;
-    transform: translateY(16px) scale(0.98);
+    transform: translateX(-50%);
   }
   100% {
-    opacity: 1;
-    transform: translateY(0) scale(1);
+    transform: translateX(0);
   }
 }
 
@@ -86,7 +84,20 @@
     animation: auroraPulse 22s ease-in-out infinite;
   }
 
-  .animate-sponsor {
-    animation: sponsorFade 0.7s ease-out forwards;
+  .sponsor-track {
+    @apply inline-flex w-max items-center gap-8;
+    animation: sponsorMarquee 32s linear infinite;
+    will-change: transform;
+  }
+
+  .sponsor-track-paused {
+    animation-play-state: paused;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sponsor-track {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
   }
 }

@@ -17,6 +17,7 @@ const sponsors = [
 const HomePage = () => {
   const sponsorsRef = useRef<HTMLDivElement | null>(null);
   const [sponsorsVisible, setSponsorsVisible] = useState(false);
+  const marqueeSponsors = [...sponsors, ...sponsors];
 
   useEffect(() => {
     const node = sponsorsRef.current;
@@ -138,18 +139,17 @@ const HomePage = () => {
       <section className="rounded-[2.75rem] border border-white/10 bg-carbon/95 p-10 shadow-[0_22px_60px_rgba(255,0,127,0.16)] md:p-16">
         <div className="space-y-6 text-center">
           <p className="text-xs uppercase tracking-[0.4em] text-white/50">Partners & Sponsors</p>
-          <div ref={sponsorsRef} className="flex flex-wrap items-center justify-center gap-8">
-            {sponsors.map((sponsor, index) => (
-              <div
-                key={sponsor.name}
-                className={`flex min-w-[10rem] items-center justify-center rounded-[1.75rem] border border-white/10 bg-white/5 px-8 py-6 shadow-[0_18px_45px_rgba(255,0,127,0.14)] ${
-                  sponsorsVisible ? "animate-sponsor" : "opacity-0 translate-y-6"
-                }`}
-                style={{ animationDelay: sponsorsVisible ? `${index * 500}ms` : "0ms" }}
-              >
-                <img src={sponsor.logo} alt={sponsor.name} className="h-20 w-auto object-contain" loading="lazy" />
-              </div>
-            ))}
+          <div ref={sponsorsRef} className="relative overflow-hidden">
+            <div className={`sponsor-track ${sponsorsVisible ? "" : "sponsor-track-paused"}`}>
+              {marqueeSponsors.map((sponsor, index) => (
+                <div
+                  key={`${sponsor.name}-${index}`}
+                  className="flex min-w-[10rem] shrink-0 items-center justify-center rounded-[1.75rem] border border-white/10 bg-white/5 px-8 py-6 shadow-[0_18px_45px_rgba(255,0,127,0.14)]"
+                >
+                  <img src={sponsor.logo} alt={sponsor.name} className="h-20 w-auto object-contain" loading="lazy" />
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
