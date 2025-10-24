@@ -13,7 +13,7 @@ const TeamPage = ({ teamName, tagline, roster }: TeamPageProps) => {
 
   return (
     <div className="space-y-16">
-      <section className="rounded-[2.75rem] border border-white/10 bg-carbon/95 p-10 md:p-16">
+      <section className="rounded-[2.75rem] border border-white/10 bg-carbon/95 p-10 shadow-[0_22px_60px_rgba(255,0,127,0.16)] md:p-16">
         <p className="text-xs uppercase tracking-[0.35em] text-white/50">Jinx Esport</p>
         <h1 className="mt-4 font-display text-4xl uppercase tracking-[0.25em] text-snow md:text-5xl">{teamName}</h1>
         <p className="mt-3 text-sm uppercase tracking-[0.35em] text-fuchsia">{tagline}</p>

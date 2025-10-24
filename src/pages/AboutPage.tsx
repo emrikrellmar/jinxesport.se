@@ -50,7 +50,7 @@ const leadership = [
 
 const AboutPage = () => (
   <div className="flex flex-col gap-20 pb-12">
-    <section className="relative overflow-hidden rounded-3xl border border-white/10 bg-carbon/80 px-8 py-12 shadow-2xl shadow-fuchsia/10 md:flex md:items-stretch md:gap-12 md:px-14">
+    <section className="relative overflow-hidden rounded-3xl border border-white/10 bg-carbon/80 px-8 py-12 shadow-[0_22px_60px_rgba(255,0,127,0.16)] md:flex md:items-stretch md:gap-12 md:px-14">
       <div className="pointer-events-none absolute inset-0 -z-10 opacity-70">
         <div className="absolute left-1/2 top-0 h-48 w-48 -translate-x-1/2 translate-y-[-40%] rounded-full bg-fuchsia/20 blur-3xl" />
         <div className="absolute bottom-[-25%] right-[-10%] h-56 w-56 rounded-full bg-fuchsia/10 blur-3xl" />
@@ -101,7 +101,7 @@ const AboutPage = () => (
           {timelineEvents.map((event) => (
             <li key={event.title} className="relative pl-6">
               <span className="absolute left-[-33px] top-1 h-5 w-5 rounded-full border border-fuchsia bg-carbon shadow-[0_0_20px_rgba(255,0,127,0.65)]" />
-              <div className="rounded-2xl border border-white/10 bg-carbon/70 p-6 shadow-[0_25px_50px_rgba(0,0,0,0.35)]">
+              <div className="rounded-2xl border border-white/10 bg-carbon/70 p-6 shadow-[0_22px_60px_rgba(255,0,127,0.16)]">
                 <p className="text-xs uppercase tracking-[0.4em] text-fuchsia/80">{event.date}</p>
                 <h3 className="mt-2 font-display text-2xl uppercase tracking-[0.2em] text-snow">{event.title}</h3>
                 <p className="mt-3 text-sm text-white/70">{event.body}</p>
@@ -112,7 +112,7 @@ const AboutPage = () => (
       </div>
     </section>
 
-    <section className="rounded-[2.75rem] border border-white/10 bg-carbon/90 px-8 py-12 shadow-[0_30px_65px_rgba(0,0,0,0.45)] md:px-16">
+    <section className="rounded-[2.75rem] border border-white/10 bg-carbon/90 px-8 py-12 shadow-[0_22px_60px_rgba(255,0,127,0.16)] md:px-16">
       <div className="grid gap-12 lg:grid-cols-2">
         <div className="space-y-4">
           <p className="text-xs uppercase tracking-[0.4em] text-fuchsia/70">Competitive Focus</p>
@@ -144,7 +144,7 @@ const AboutPage = () => (
       </div>
     </section>
 
-    <section className="rounded-[2.75rem] border border-white/10 bg-carbon/80 px-8 py-12 shadow-[0_30px_65px_rgba(0,0,0,0.45)] md:px-16">
+    <section className="rounded-[2.75rem] border border-white/10 bg-carbon/80 px-8 py-12 shadow-[0_22px_60px_rgba(255,0,127,0.16)] md:px-16">
       <div className="space-y-6 text-center md:text-left">
         <p className="text-xs uppercase tracking-[0.4em] text-fuchsia/70">Leadership</p>
         <h2 className="font-display text-3xl uppercase tracking-[0.25em] text-snow md:text-4xl">Faces Of J!nX Esport</h2>
@@ -156,7 +156,7 @@ const AboutPage = () => (
         {leadership.map((person) => (
           <div
             key={person.name}
-            className="rounded-2xl border border-white/10 bg-ash/60 p-6 text-center shadow-[0_20px_45px_rgba(0,0,0,0.35)]"
+            className="rounded-2xl border border-white/10 bg-ash/60 p-6 text-center shadow-[0_18px_45px_rgba(255,0,127,0.14)]"
           >
             <div className="mx-auto mb-4 h-24 w-24 overflow-hidden rounded-full border border-white/10 bg-carbon/70 p-1">
               <img src={person.avatar} alt={`${person.name} portrait`} className="h-full w-full object-cover" />

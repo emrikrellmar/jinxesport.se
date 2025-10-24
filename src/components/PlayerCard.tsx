@@ -5,7 +5,7 @@ type PlayerCardProps = {
 };
 
 const PlayerCard = ({ player }: PlayerCardProps) => (
-  <div className="relative overflow-hidden rounded-3xl border border-white/10 bg-carbon/90 p-6 text-center">
+  <div className="relative overflow-hidden rounded-3xl border border-white/10 bg-carbon/90 p-6 text-center shadow-[0_18px_45px_rgba(255,0,127,0.14)]">
     {player.photo && (
       <div className="relative mx-auto h-24 w-24 overflow-hidden rounded-full border border-fuchsia/40">
         <div className="pointer-events-none absolute inset-0 rounded-full bg-gradient-to-br from-fuchsia/40 via-transparent to-transparent blur-md" />

@@ -32,7 +32,7 @@ const contacts = [
 
 const ContactPage = () => (
   <div className="flex flex-col gap-16 pb-12">
-    <section className="rounded-[2.75rem] border border-white/10 bg-carbon/90 px-8 py-12 text-center shadow-[0_35px_65px_rgba(0,0,0,0.45)] md:px-16">
+    <section className="rounded-[2.75rem] border border-white/10 bg-carbon/90 px-8 py-12 text-center shadow-[0_22px_60px_rgba(255,0,127,0.16)] md:px-16">
       <p className="text-xs uppercase tracking-[0.4em] text-fuchsia/70">Contact</p>
       <h1 className="mt-3 font-display text-4xl uppercase tracking-[0.3em] text-snow md:text-5xl">Connect With J!nX</h1>
       <p className="mx-auto mt-6 max-w-3xl text-base text-white/70 md:text-lg">
@@ -41,12 +41,12 @@ const ContactPage = () => (
       </p>
     </section>
 
-    <section className="rounded-[2.75rem] border border-white/10 bg-carbon/80 px-8 py-12 shadow-[0_30px_65px_rgba(0,0,0,0.45)] md:px-16">
+    <section className="rounded-[2.75rem] border border-white/10 bg-carbon/80 px-8 py-12 shadow-[0_22px_60px_rgba(255,0,127,0.16)] md:px-16">
       <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-4">
         {contacts.map((contact) => (
           <div
             key={contact.email}
-            className="flex flex-col items-center rounded-2xl border border-white/10 bg-ash/60 p-6 text-center shadow-[0_20px_45px_rgba(0,0,0,0.35)]"
+            className="flex flex-col items-center rounded-2xl border border-white/10 bg-ash/60 p-6 text-center shadow-[0_18px_45px_rgba(255,0,127,0.14)]"
           >
             {contact.avatar ? (
               <div className="mb-4 flex h-24 w-24 items-center justify-center overflow-hidden rounded-full border border-white/10 bg-carbon/70 p-2">
@@ -69,4 +69,3 @@ const ContactPage = () => (
 );
 
 export default ContactPage;
-

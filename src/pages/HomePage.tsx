@@ -38,7 +38,7 @@ const HomePage = () => {
 
   return (
     <div className="space-y-20">
-      <section className="glass-panel relative overflow-hidden rounded-[2.75rem] border border-white/5 p-10 md:p-16">
+      <section className="glass-panel relative overflow-hidden rounded-[2.75rem] border border-white/5 p-10 shadow-[0_26px_70px_rgba(255,0,127,0.24)] md:p-16">
         <div className="relative grid gap-12 md:grid-cols-[1.1fr_0.9fr] md:items-center">
           <div className="space-y-6">
             <p className="text-xs uppercase tracking-[0.4em] text-white/50">Swedish Counter-Strike</p>
@@ -99,7 +99,7 @@ const HomePage = () => {
         </div>
       </section>
 
-      <section className="rounded-[2.75rem] border border-white/10 bg-carbon/95 p-10 md:p-16">
+      <section className="rounded-[2.75rem] border border-white/10 bg-carbon/95 p-10 shadow-[0_22px_60px_rgba(255,0,127,0.16)] md:p-16">
         <div className="space-y-6">
           <p className="text-xs uppercase tracking-[0.4em] text-white/50">Built On Competition And Care</p>
           <h2 className="font-display text-3xl uppercase tracking-[0.25em] text-snow md:text-4xl">
@@ -118,7 +118,7 @@ const HomePage = () => {
         </div>
       </section>
 
-      <section className="rounded-[2.75rem] border border-white/10 bg-carbon/95 p-10 md:p-16">
+      <section className="rounded-[2.75rem] border border-white/10 bg-carbon/95 p-10 shadow-[0_22px_60px_rgba(255,0,127,0.16)] md:p-16">
         <div className="space-y-6">
           <div className="text-center md:text-left">
             <p className="text-xs uppercase tracking-[0.4em] text-white/50">Live Updates</p>
@@ -135,14 +135,14 @@ const HomePage = () => {
         </div>
       </section>
 
-      <section className="rounded-[2.75rem] border border-white/10 bg-carbon/95 p-10 md:p-16">
+      <section className="rounded-[2.75rem] border border-white/10 bg-carbon/95 p-10 shadow-[0_22px_60px_rgba(255,0,127,0.16)] md:p-16">
         <div className="space-y-6 text-center">
           <p className="text-xs uppercase tracking-[0.4em] text-white/50">Partners & Sponsors</p>
           <div ref={sponsorsRef} className="flex flex-wrap items-center justify-center gap-8">
             {sponsors.map((sponsor, index) => (
               <div
                 key={sponsor.name}
-                className={`flex min-w-[10rem] items-center justify-center rounded-[1.75rem] border border-white/10 bg-white/5 px-8 py-6 ${
+                className={`flex min-w-[10rem] items-center justify-center rounded-[1.75rem] border border-white/10 bg-white/5 px-8 py-6 shadow-[0_18px_45px_rgba(255,0,127,0.14)] ${
                   sponsorsVisible ? "animate-sponsor" : "opacity-0 translate-y-6"
                 }`}
                 style={{ animationDelay: sponsorsVisible ? `${index * 500}ms` : "0ms" }}
