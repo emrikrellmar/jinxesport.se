@@ -20,8 +20,8 @@ const timelineEvents = [
   },
   {
     date: '31 August 2025',
-    title: 'Qualified for Regionalseries East',
-    body: 'J!nX secures a spot in the Swedish Regionalseries East, showcasing rapid progression through the national competitive ladder with the roster of 1kevin, kreppo, emme1, jaybn and 15ak.',
+    title: 'Qualified for Regionalseries west',
+    body: 'J!nX secures a spot in the Swedish Regionalseries west, showcasing rapid progression through the national competitive ladder with the roster of 1kevin, kreppo, emme1, jaybn and 15ak.',
   },
   {
     date: '12 September 2025',
