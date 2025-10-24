@@ -2,7 +2,7 @@ import { NavLink } from 'react-router-dom';
 import logo from '../assets/jinx_logo.png';
 const Footer = () => (
   <footer className="border-t border-white/10 bg-carbon">
-    <div className="mx-auto flex w-full max-w-5xl flex-col items-center gap-6 px-6 py-8 text-xs uppercase tracking-[0.35em] text-white/50 md:flex-row md:justify-between">
+    <div className="flex w-full flex-col items-center gap-6 px-6 py-8 text-xs uppercase tracking-[0.35em] text-white/50 md:flex-row md:justify-between">
       <NavLink to="/" className="flex items-center gap-3 text-snow">
         <div className="flex h-10 w-10 items-center justify-center">
           <img src={logo} alt="Jinx Esport crest" className="h-full w-full object-contain" />

@@ -12,10 +12,18 @@ type ExternalLink = {
   iconOnly?: boolean;
 };
 
-const navItems = [
-  { label: "Home", to: "/" },
-  { label: "Main Roster", to: "/teams/main" },
-  { label: "Academy", to: "/teams/academy" },
+type NavSection =
+  | { type: "link"; label: string; to: string }
+  | { type: "divider" };
+
+const navStructure: NavSection[] = [
+  { type: "link", label: "Home", to: "/" },
+  { type: "link", label: "About", to: "/about" },
+  { type: "link", label: "Contact", to: "/contact" },
+  { type: "divider" },
+  { type: "link", label: "Main Roster", to: "/teams/main" },
+  { type: "link", label: "Academy", to: "/teams/academy" },
+  { type: "divider" },
 ];
 
 const externalLinks: ExternalLink[] = [
@@ -84,8 +92,16 @@ const Navbar = () => {
           <span className="hidden font-display text-lg uppercase tracking-[0.35em] text-snow md:inline">Jinx Esport</span>
         </NavLink>
 
-        <nav className="hidden flex-1 items-center justify-center gap-8 md:flex">
-          {navItems.map((item) => renderLink(item.label, item.to))}
+        <nav className="hidden flex-1 items-center justify-center gap-6 md:flex">
+          {navStructure.map((item, index) =>
+            item.type === "divider" ? (
+              <span key={`divider-${index}`} className="text-white/30">
+                ┃
+              </span>
+            ) : (
+              renderLink(item.label, item.to)
+            )
+          )}
         </nav>
 
         <div className="hidden items-center justify-end gap-3 md:flex">
@@ -105,7 +121,15 @@ const Navbar = () => {
       {isOpen && (
         <nav className="border-t border-white/10 bg-carbon px-6 pb-6 pt-4 md:hidden">
           <div className="flex flex-col gap-4 text-center">
-            {navItems.map((item) => renderLink(item.label, item.to, () => setIsOpen(false)))}
+            {navStructure.map((item, index) =>
+              item.type === "divider" ? (
+                <span key={`divider-mobile-${index}`} className="mx-auto w-12 border-t border-white/15 pt-1 text-center text-white/40">
+                  ┃
+                </span>
+              ) : (
+                renderLink(item.label, item.to, () => setIsOpen(false))
+              )
+            )}
             <div className="mt-2 grid gap-3">
               {externalLinks.map((link) => renderExternal(link, () => setIsOpen(false)))}
             </div>

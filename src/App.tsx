@@ -6,6 +6,8 @@ import HomePage from './pages/HomePage';
 import TeamPage from './pages/TeamPage';
 import NotFoundPage from './pages/NotFoundPage';
 import { academyRoster, mainRoster } from './data/rosters';
+import AboutPage from './pages/AboutPage';
+import ContactPage from './pages/ContactPage';
 
 const App = () => {
   const location = useLocation();
@@ -44,6 +46,8 @@ const App = () => {
               />
             }
           />
+          <Route path="/about" element={<AboutPage />} />
+          <Route path="/contact" element={<ContactPage />} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </main>
