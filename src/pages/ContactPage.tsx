@@ -23,7 +23,7 @@ const contacts = [
     avatar: silhouetteMale,
   },
   {
-    name: 'Catrin Lidstrom',
+    name: 'Catrin Lidström',
     role: 'Treasurer',
     email: 'catrin.lidstrom@jinxesport.se',
     avatar: silhouetteFemale,

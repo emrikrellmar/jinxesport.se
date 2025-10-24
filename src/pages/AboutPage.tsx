@@ -6,7 +6,7 @@ const timelineEvents = [
   {
     date: '15 February 2025',
     title: 'J!nX Esport founded',
-    body: 'Jonas "Braxen" Johansson launches J!nX Esport with a pledge to give Swedish Counter-Strike players a professional environment built on dedication and community.',
+    body: 'Jonas "Braxen" Johansson together with Robin Ekholm launches J!nX Esport with a pledge to give Swedish Counter-Strike players a professional environment built on dedication and community.',
   },
   {
     date: '28 February 2025',
@@ -42,7 +42,7 @@ const leadership = [
     avatar: silhouetteMale,
   },
   {
-    name: 'Catrin Lidstrom',
+    name: 'Catrin Lidström',
     role: 'Treasurer',
     avatar: silhouetteFemale,
   },
