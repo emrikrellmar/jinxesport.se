@@ -34,8 +34,23 @@ const MembershipForm = () => {
   const handleSubmit: React.FormEventHandler<HTMLFormElement> = async (event) => {
     event.preventDefault();
 
+    const missingFields: string[] = [];
+    if (!form.fullName.trim()) missingFields.push("Full Name");
+    if (!form.email.trim()) missingFields.push("Email");
+    if (!form.discord.trim()) missingFields.push("Discord Name");
+    if (!form.personalNumber.trim()) missingFields.push("Personal Number");
+    if (!form.city.trim()) missingFields.push("City / Town");
+
+    if (missingFields.length) {
+      setSubmission({
+        status: "error",
+        message: `Please fill in: ${missingFields.join(", ")}.`,
+      });
+      return;
+    }
+
     if (!form.gdprConsent) {
-      setSubmission({ status: "error", message: "You must accept the GDPR consent to join." });
+      setSubmission({ status: "error", message: "Please accept the GDPR consent to join." });
       return;
     }
 
