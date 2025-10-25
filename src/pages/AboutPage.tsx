@@ -1,6 +1,6 @@
-import braxenPhoto from '../assets/Braxen.png';
+﻿import braxenPhoto from '../assets/Braxen.png';
 import silhouetteMale from '../assets/silhouette.png';
-import silhouetteFemale from '../assets/womansilhouette.png';
+import catrinPhoto from '../assets/catrin.png';
 
 const timelineEvents = [
   {
@@ -15,8 +15,8 @@ const timelineEvents = [
   },
   {
     date: '15 July 2025',
-    title: 'Bååten joins for ESEA S54',
-    body: 'Linus "Bååten" Andersson commits to J!nX for ESEA League Season 54, adding tier-one experience and leadership in high-pressure matches. Forming the roster with emme1, bååten, kevvzozo, wezsen and kreppo.',
+    title: 'BÃ¥Ã¥ten joins for ESEA S54',
+    body: 'Linus "BÃ¥Ã¥ten" Andersson commits to J!nX for ESEA League Season 54, adding tier-one experience and leadership in high-pressure matches. Forming the roster with emme1, bÃ¥Ã¥ten, kevvzozo, wezsen and kreppo.',
   },
   {
     date: '31 August 2025',
@@ -44,7 +44,7 @@ const leadership = [
   {
     name: 'Catrin Lidström',
     role: 'Treasurer',
-    avatar: silhouetteFemale,
+    avatar: catrinPhoto,
   },
 ];
 
@@ -158,7 +158,7 @@ const AboutPage = () => (
             key={person.name}
             className="rounded-2xl border border-white/10 bg-ash/60 p-6 text-center shadow-[0_18px_45px_rgba(255,0,127,0.14)]"
           >
-            <div className="mx-auto mb-4 h-24 w-24 overflow-hidden rounded-full border border-white/10 bg-carbon/70 p-1">
+            <div className="mx-auto mb-4 flex h-24 w-24 items-center justify-center overflow-hidden rounded-full border border-white/10 bg-carbon/70">
               <img src={person.avatar} alt={`${person.name} portrait`} className="h-full w-full object-cover" />
             </div>
             <p className="text-xs uppercase tracking-[0.35em] text-fuchsia/70">{person.role}</p>
@@ -171,3 +171,9 @@ const AboutPage = () => (
 );
 
 export default AboutPage;
+
+
+
+
+
+

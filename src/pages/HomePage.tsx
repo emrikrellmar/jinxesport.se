@@ -31,16 +31,10 @@ const HomePage = () => {
             <div className="flex flex-col gap-4">
               <div className="flex flex-wrap gap-3">
                 <Link
-                  to="/teams/main"
+                  to="/teams"
                   className="inline-flex items-center rounded-full bg-fuchsia px-6 py-3 text-xs font-semibold uppercase tracking-[0.35em] text-void"
                 >
-                  Main Team
-                </Link>
-                <Link
-                  to="/teams/academy"
-                  className="inline-flex items-center rounded-full bg-white/10 px-6 py-3 text-xs font-semibold uppercase tracking-[0.35em] text-snow transition hover:bg-white/20 hover:text-fuchsia"
-                >
-                  Academy Team
+                  Teams
                 </Link>
                 <Link
                   to="/about"
@@ -196,6 +190,7 @@ const HomePage = () => {
 };
 
 export default HomePage;
+
 
 
 
