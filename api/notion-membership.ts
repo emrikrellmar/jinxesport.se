@@ -21,7 +21,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   const body = typeof req.body === 'string' ? JSON.parse(req.body || '{}') : req.body;
 
   const {
-    fullName,
+    name,
     email,
     phone,
     discord,
@@ -30,9 +30,9 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     gdprConsent,
   } = body ?? {};
 
-  if (!fullName || !email || !discord || !city || gdprConsent !== true) {
+  if (!name || !email || !discord || !city || gdprConsent !== true) {
     res.status(400).json({
-      error: 'Missing required fields. Ensure fullName, email, discord, and city are provided and GDPR consent is checked.',
+      error: 'Missing required fields. Ensure name, email, discord, and city are provided and GDPR consent is checked.',
     });
     return;
   }
@@ -46,7 +46,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
         Name: {
           title: [
             {
-              text: { content: fullName },
+              text: { content: name },
             },
           ],
         },
@@ -74,7 +74,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
           checkbox: Boolean(optInEmails),
         },
         'GDPR Consent': {
-          checkbox: true,
+          checkbox: Boolean(gdprConsent),
         },
         'Registration Date': {
           date: {

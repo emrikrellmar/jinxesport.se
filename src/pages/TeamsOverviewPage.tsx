@@ -13,7 +13,7 @@ const teams = [
   },
   {
     title: "League of Legends",
-    description: "League roster in formation - recruitment and trials ongoing.",
+    description: "League roster in formation, recruitment and trials ongoing.",
     to: "/teams/league",
   },
 ];

@@ -1,7 +1,7 @@
 ﻿import { useState } from "react";
 
 const initialForm = {
-  fullName: "",
+  name: "",
   email: "",
   phone: "",
   discord: "",
@@ -21,9 +21,12 @@ type SubmissionState =
 const MembershipForm = () => {
   const [form, setForm] = useState<FormState>(initialForm);
   const [submission, setSubmission] = useState<SubmissionState>({ status: "idle" });
+  const [missingFields, setMissingFields] = useState<string[]>([]);
 
   const handleChange: React.ChangeEventHandler<HTMLInputElement> = (event) => {
     const { name, type, checked, value } = event.target;
+    setSubmission((prev) => (prev.status === "success" ? prev : { status: "idle" }));
+    setMissingFields((prev) => prev.filter((field) => field !== name));
     setForm((prev) => ({
       ...prev,
       [name]: type === "checkbox" ? checked : value,
@@ -33,26 +36,29 @@ const MembershipForm = () => {
   const handleSubmit: React.FormEventHandler<HTMLFormElement> = async (event) => {
     event.preventDefault();
 
-    const missingFields: string[] = [];
-    if (!form.fullName.trim()) missingFields.push("Full Name");
-    if (!form.email.trim()) missingFields.push("Email");
-    if (!form.discord.trim()) missingFields.push("Discord Name");
-    if (!form.city.trim()) missingFields.push("City / Town");
+    const missing: string[] = [];
+    if (!form.name.trim()) missing.push("name");
+    if (!form.email.trim()) missing.push("email");
+    if (!form.discord.trim()) missing.push("discord");
+    if (!form.city.trim()) missing.push("city");
 
-    if (missingFields.length) {
+    if (missing.length) {
+      setMissingFields(missing);
       setSubmission({
         status: "error",
-        message: `Please fill in: ${missingFields.join(", ")}.`,
+        message: "Please complete all required fields before submitting.",
       });
       return;
     }
 
     if (!form.gdprConsent) {
+      setMissingFields((prev) => (prev.includes("gdprConsent") ? prev : [...prev, "gdprConsent"]));
       setSubmission({ status: "error", message: "Please accept the GDPR consent to join." });
       return;
     }
 
     setSubmission({ status: "loading" });
+    setMissingFields([]);
 
     try {
       const response = await fetch("/api/notion-membership", {
@@ -78,6 +84,20 @@ const MembershipForm = () => {
     }
   };
 
+  const inputClasses = (field: string) =>
+    `w-full rounded-2xl border bg-white/5 px-4 py-3 text-sm text-white placeholder:text-white/40 focus:outline-none focus:ring-2 ${
+      missingFields.includes(field)
+        ? "border-rose-500 focus:border-rose-400 focus:ring-rose-400/40"
+        : "border-white/10 focus:border-fuchsia focus:ring-fuchsia/40"
+    }`;
+
+  const checkboxClasses = (field: string) =>
+    `h-5 w-5 rounded border focus:outline-none focus:ring-2 ${
+      missingFields.includes(field)
+        ? "border-rose-500 bg-rose-500/10 text-rose-400 focus:ring-rose-400/40"
+        : "border-white/20 bg-white/10 text-fuchsia focus:ring-fuchsia/40"
+    }`;
+
   return (
     <section className="rounded-[2.75rem] border border-white/10 bg-carbon/95 p-10 shadow-[0_22px_60px_rgba(255,0,127,0.16)] md:p-16">
       <div className="mx-auto max-w-3xl space-y-10">
@@ -95,31 +115,33 @@ const MembershipForm = () => {
         <form onSubmit={handleSubmit} className="space-y-6">
           <div className="grid gap-6 md:grid-cols-2">
             <div className="space-y-2">
-              <label htmlFor="fullName" className="text-xs uppercase tracking-[0.35em] text-white/60">
-                Full Name
+              <label htmlFor="name" className="text-xs uppercase tracking-[0.35em] text-white/60">
+                Name <span className="ml-1 font-medium text-rose-400">*</span>
               </label>
               <input
-                id="fullName"
-                name="fullName"
+                id="name"
+                name="name"
                 type="text"
-                required
-                value={form.fullName}
+                value={form.name}
                 onChange={handleChange}
-                className="w-full rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-white placeholder:text-white/40 focus:border-fuchsia focus:outline-none focus:ring-2 focus:ring-fuchsia/40"
+                className={inputClasses("name")}
+                aria-invalid={missingFields.includes("name")}
+                aria-required="true"
               />
             </div>
             <div className="space-y-2">
               <label htmlFor="email" className="text-xs uppercase tracking-[0.35em] text-white/60">
-                Email Address
+                Email Address <span className="ml-1 font-medium text-rose-400">*</span>
               </label>
               <input
                 id="email"
                 name="email"
                 type="email"
-                required
                 value={form.email}
                 onChange={handleChange}
-                className="w-full rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-white placeholder:text-white/40 focus:border-fuchsia focus:outline-none focus:ring-2 focus:ring-fuchsia/40"
+                className={inputClasses("email")}
+                aria-invalid={missingFields.includes("email")}
+                aria-required="true"
               />
             </div>
             <div className="space-y-2">
@@ -132,35 +154,37 @@ const MembershipForm = () => {
                 type="tel"
                 value={form.phone}
                 onChange={handleChange}
-                className="w-full rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-white placeholder:text-white/40 focus:border-fuchsia focus:outline-none focus:ring-2 focus:ring-fuchsia/40"
+                className={inputClasses("phone")}
               />
             </div>
             <div className="space-y-2">
               <label htmlFor="discord" className="text-xs uppercase tracking-[0.35em] text-white/60">
-                Discord Name
+                Discord Name <span className="ml-1 font-medium text-rose-400">*</span>
               </label>
               <input
                 id="discord"
                 name="discord"
                 type="text"
-                required
                 value={form.discord}
                 onChange={handleChange}
-                className="w-full rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-white placeholder:text-white/40 focus:border-fuchsia focus:outline-none focus:ring-2 focus:ring-fuchsia/40"
+                className={inputClasses("discord")}
+                aria-invalid={missingFields.includes("discord")}
+                aria-required="true"
               />
             </div>
             <div className="space-y-2">
               <label htmlFor="city" className="text-xs uppercase tracking-[0.35em] text-white/60">
-                City / Town
+                City / Town <span className="ml-1 font-medium text-rose-400">*</span>
               </label>
               <input
                 id="city"
                 name="city"
                 type="text"
-                required
                 value={form.city}
                 onChange={handleChange}
-                className="w-full rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-white placeholder:text-white/40 focus:border-fuchsia focus:outline-none focus:ring-2 focus:ring-fuchsia/40"
+                className={inputClasses("city")}
+                aria-invalid={missingFields.includes("city")}
+                aria-required="true"
               />
             </div>
           </div>
@@ -172,7 +196,7 @@ const MembershipForm = () => {
                 name="optInEmails"
                 checked={form.optInEmails}
                 onChange={handleChange}
-                className="h-5 w-5 rounded border-white/20 bg-white/10 text-fuchsia focus:ring-fuchsia/40"
+                className={checkboxClasses("optInEmails")}
               />
               I agree to receive updates and emails from Jinx Esport (optional).
             </label>
@@ -182,15 +206,18 @@ const MembershipForm = () => {
                 name="gdprConsent"
                 checked={form.gdprConsent}
                 onChange={handleChange}
-                className="h-5 w-5 rounded border-white/20 bg-white/10 text-fuchsia focus:ring-fuchsia/40"
-                required
+                className={checkboxClasses("gdprConsent")}
+                aria-invalid={missingFields.includes("gdprConsent")}
+                aria-required="true"
               />
-              I consent to Jinx Esport storing my details in accordance with GDPR.
+              I consent to Jinx Esport storing my details in accordance with GDPR. <span className="ml-1 font-medium text-rose-400">*</span>
             </label>
           </div>
 
           {submission.status === "error" ? (
-            <p className="text-sm text-red-400">{submission.message}</p>
+            <div className="rounded-2xl border border-rose-500/60 bg-rose-500/10 px-4 py-3 text-sm text-rose-100">
+              {submission.message}
+            </div>
           ) : null}
           {submission.status === "success" ? (
             <p className="text-sm text-emerald-400">Thank you! Your membership request has been received.</p>
