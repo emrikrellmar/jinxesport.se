@@ -37,9 +37,10 @@ const MembershipForm = () => {
   const handleSubmit: React.FormEventHandler<HTMLFormElement> = async (event) => {
     event.preventDefault();
 
-    const missing: string[] = [];
+  const missing: string[] = [];
     if (!form.name.trim()) missing.push("name");
     if (!form.email.trim()) missing.push("email");
+  if (!form.phone.trim()) missing.push("phone");
     if (!form.personalNumber.trim()) missing.push("personalNumber");
     else if (!/^[0-9]{12}$/.test(form.personalNumber)) missing.push("personalNumber");
     if (!form.discord.trim()) missing.push("discord");
@@ -136,7 +137,7 @@ const MembershipForm = () => {
             </div>
             <div className="space-y-2">
               <label htmlFor="personalNumber" className="text-xs uppercase tracking-[0.35em] text-white/60">
-                Personal number (YYYYMMDDXXXX) <span className="ml-1 font-medium text-rose-400">*</span>
+                Personal number <span className="ml-1 font-medium text-rose-400">*</span>
               </label>
               <input
                 id="personalNumber"
@@ -147,9 +148,8 @@ const MembershipForm = () => {
                 className={inputClasses("personalNumber")}
                 aria-invalid={missingFields.includes("personalNumber")}
                 aria-required="true"
-                placeholder="e.g. 199001018765"
               />
-              <p className="mt-1 text-xs text-white/50">Enter your personal number as 12 digits: YYYYMMDDXXXX.</p>
+              <p className="mt-1 text-xs text-white/50">The format should be in the format YYYYMMDDXXXX</p>
             </div>
             <div className="space-y-2">
               <label htmlFor="email" className="text-xs uppercase tracking-[0.35em] text-white/60">
@@ -168,7 +168,7 @@ const MembershipForm = () => {
             </div>
             <div className="space-y-2">
               <label htmlFor="phone" className="text-xs uppercase tracking-[0.35em] text-white/60">
-                Phone Number
+                Phone Number <span className="ml-1 font-medium text-rose-400">*</span>
               </label>
               <input
                 id="phone"
@@ -177,7 +177,10 @@ const MembershipForm = () => {
                 value={form.phone}
                 onChange={handleChange}
                 className={inputClasses("phone")}
+                aria-invalid={missingFields.includes("phone")}
+                aria-required="true"
               />
+              <p className="mt-1 text-xs text-white/50">Should be in the format +46 70-123 45 67.</p>
             </div>
             <div className="space-y-2">
               <label htmlFor="discord" className="text-xs uppercase tracking-[0.35em] text-white/60">
