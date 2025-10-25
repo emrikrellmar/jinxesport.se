@@ -18,12 +18,9 @@ type NavSection =
 
 const navStructure: NavSection[] = [
   { type: "link", label: "Home", to: "/" },
+  { type: "link", label: "Teams", to: "/teams" },
   { type: "link", label: "About", to: "/about" },
   { type: "link", label: "Contact", to: "/contact" },
-  { type: "divider" },
-  { type: "link", label: "Main Roster", to: "/teams/main" },
-  { type: "link", label: "Academy", to: "/teams/academy" },
-  { type: "divider" },
 ];
 
 const externalLinks: ExternalLink[] = [
@@ -86,10 +83,10 @@ const Navbar = () => {
     <header className="fixed inset-x-0 top-0 z-50 border-b border-white/10 bg-carbon/95 py-4 backdrop-blur-xl">
       <div className="flex w-full items-center justify-between px-6 md:px-12">
         <NavLink to="/" className="flex items-center gap-3 text-snow">
-          <div className="flex h-11 w-11 items-center justify-center">
+          <div className="flex h-14 w-14 items-center justify-center">
             <img src={logo} alt="Jinx Esport logo" className="h-full w-full object-contain" />
           </div>
-          <span className="hidden font-display text-lg uppercase tracking-[0.35em] text-snow md:inline">Jinx Esport</span>
+          <span className="hidden font-display text-lg uppercase tracking-[0.35em] text-snow md:inline">Esport</span>
         </NavLink>
 
         <nav className="hidden flex-1 items-center justify-center gap-6 md:flex">
@@ -145,6 +142,7 @@ const Navbar = () => {
 };
 
 export default Navbar;
+
 
 
 

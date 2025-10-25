@@ -7,9 +7,10 @@ import Footer from './components/Footer';
 import HomePage from './pages/HomePage';
 import TeamPage from './pages/TeamPage';
 import NotFoundPage from './pages/NotFoundPage';
-import { academyRoster, mainRoster } from './data/rosters';
+import { academyRoster, leagueRoster, mainRoster } from './data/rosters';
 import AboutPage from './pages/AboutPage';
 import ContactPage from './pages/ContactPage';
+import TeamsOverviewPage from './pages/TeamsOverviewPage';
 
 const App = () => {
   const location = useLocation();
@@ -28,6 +29,7 @@ const App = () => {
       <main className="relative mx-auto flex w-full max-w-7xl flex-1 flex-col gap-20 px-6 pb-16 pt-28 md:px-12 md:pt-36">
         <Routes location={location} key={location.pathname}>
           <Route path="/" element={<HomePage />} />
+          <Route path="/teams" element={<TeamsOverviewPage />} />
           <Route
             path="/teams/main"
             element={
@@ -35,6 +37,16 @@ const App = () => {
                 teamName="Counter-Strike Main Team"
                 tagline="Core lineup competing in ESEA league and swedish regionserien"
                 roster={mainRoster}
+              />
+            }
+          />
+          <Route
+            path="/teams/league"
+            element={
+              <TeamPage
+                teamName="League of Legends"
+                tagline="Lineup under construction – recruitment in progress"
+                roster={leagueRoster}
               />
             }
           />

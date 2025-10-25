@@ -1,21 +1,26 @@
 ﻿import { Link } from "react-router-dom";
 import jerseyImage from "../assets/playerjersey.png";
-import sponsorPrimary from "../assets/sponsor2.png";
-import sponsorSecondary from "../assets/sponsor_1png.png";
-import sponsorTertiary from "../assets/sponsor3.png";
+import sponsorAjotech from "../assets/sponsor1.png";
+import sponsorCollective from "../assets/sponsor2.png";
+import partnerAlliance from "../assets/partner1.png";
+import partnerCommunity from "../assets/partner2.png";
 import iconX from "../assets/xlogo.png";
 import iconDiscord from "../assets/discordlogo.png";
-import XFeed from "../components/XFeed";
+import TwitterFeed from "../components/TwitterFeed";
 
 const sponsors = [
-  { name: "Ajotech AB", logo: sponsorPrimary, size: "large" as const },
-  { name: "JNIX Collective", logo: sponsorSecondary, size: "large" as const },
-  { name: "Sponsor 3", logo: sponsorTertiary },
+  { name: "Ajotech AB", logo: sponsorAjotech, size: "large" as const },
+  { name: "JNIX Collective", logo: sponsorCollective, size: "large" as const },
 ];
 
-const HomePage = () => {
-  const marqueeSponsors = [...sponsors, ...sponsors];
+const partners = [
+  { name: "Digital Alliance", logo: partnerAlliance },
+  { name: "Community Partner", logo: partnerCommunity },
+];
 
+const sponsorTiles = Array.from({ length: 6 }, (_, index) => sponsors[index % sponsors.length]);
+
+const HomePage = () => {
   return (
     <div className="space-y-20">
       <section className="relative overflow-visible rounded-[2.75rem] bg-carbon/90 p-10 shadow-[0_48px_140px_rgba(255,0,127,0.28)] md:p-16">
@@ -30,6 +35,12 @@ const HomePage = () => {
                   className="inline-flex items-center rounded-full bg-fuchsia px-6 py-3 text-xs font-semibold uppercase tracking-[0.35em] text-void"
                 >
                   Main Team
+                </Link>
+                <Link
+                  to="/teams/academy"
+                  className="inline-flex items-center rounded-full bg-white/10 px-6 py-3 text-xs font-semibold uppercase tracking-[0.35em] text-snow transition hover:bg-white/20 hover:text-fuchsia"
+                >
+                  Academy Team
                 </Link>
                 <Link
                   to="/about"
@@ -53,7 +64,7 @@ const HomePage = () => {
                   rel="noreferrer"
                   className="inline-flex items-center text-snow transition hover:text-fuchsia"
                 >
-                  <img src={iconDiscord} alt="Discord logo" className="h-10 w-10" />
+                  <img src={iconDiscord} alt="Discord logo" className="h-10 w-10 object-contain" />
                   <span className="sr-only">Discord</span>
                 </a>
                 <a
@@ -62,7 +73,7 @@ const HomePage = () => {
                   rel="noreferrer"
                   className="inline-flex items-center text-snow transition hover:text-fuchsia"
                 >
-                  <img src={iconX} alt="X logo" className="h-10 w-10" />
+                  <img src={iconX} alt="X logo" className="h-12 w-12 object-contain" />
                   <span className="sr-only">X/Twitter</span>
                 </a>
               </div>
@@ -109,34 +120,73 @@ const HomePage = () => {
               X Feed From @jinxesport
             </h2>
             <p className="mt-4 text-base text-white/60">
-              See the latest three posts straight from X. New updates drop here the moment they go live.
+              See the latest posts straight from X. New updates drop here the moment they go live.
             </p>
           </div>
-          <XFeed />
+          <TwitterFeed />
         </div>
       </section>
 
       <section className="rounded-[2.75rem] border border-white/10 bg-carbon/95 p-10 shadow-[0_22px_60px_rgba(255,0,127,0.16)] md:p-16">
-        <div className="space-y-6 text-center">
-          <p className="text-xs uppercase tracking-[0.4em] text-white/50">Partners & Sponsors</p>
-          <div className="relative overflow-hidden">
-            <div className="sponsor-track gap-6 md:gap-8">
-              {marqueeSponsors.map((sponsor, index) => {
+        <div className="space-y-10">
+          <div className="space-y-3 text-left">
+            <p className="text-xs uppercase tracking-[0.4em] text-white/50">Sponsors</p>
+            <p className="text-base text-white/60">
+              Our sponsors invest in our vision and keep the lights on for every match, bootcamp, and community project.
+            </p>
+          </div>
+
+          <div className="rounded-[2rem] border border-white/10 bg-white/5 p-6">
+            <div className="flex flex-nowrap justify-center gap-6 overflow-hidden">
+              {sponsorTiles.map((sponsor, index) => {
                 const sizeClass = sponsor.size === "large" ? "h-16 sm:h-20 md:h-24 xl:h-28" : "h-14 sm:h-16 md:h-20";
                 return (
-                <div
-                  key={`${sponsor.name}-${index}`}
-                  className="flex min-w-[7.5rem] shrink-0 items-center justify-center rounded-[1.35rem] border border-white/10 bg-white/5 px-5 py-4 sm:min-w-[9rem] sm:rounded-[1.6rem] sm:px-6 sm:py-5 md:min-w-[10rem] md:rounded-[1.75rem] md:px-8 md:py-6"
-                >
-                  <img
-                    src={sponsor.logo}
-                    alt={sponsor.name}
-                    className={`${sizeClass} w-auto object-contain`}
-                    loading="lazy"
-                  />
-                </div>
-              );
+                  <div
+                    key={`${sponsor.name}-${index}`}
+                    className="flex flex-1 min-w-[8rem] items-center justify-center rounded-[1.35rem] border border-white/10 bg-white/5 px-6 py-6"
+                  >
+                    <img
+                      src={sponsor.logo}
+                      alt={sponsor.name}
+                      className={`${sizeClass} w-auto object-contain`}
+                      loading="lazy"
+                    />
+                  </div>
+                );
               })}
+            </div>
+          </div>
+
+          <div className="grid gap-6 lg:grid-cols-[2fr_1fr]">
+            <div className="space-y-4 rounded-[2.25rem] border border-white/10 bg-carbon/90 p-8">
+              <p className="text-xs uppercase tracking-[0.4em] text-white/50">Partners</p>
+              <p className="text-base text-white/60">
+                Partners collaborate with us on events and initiatives that enrich our players, supporters, and the
+                community around Jinx Esport.
+              </p>
+              <div className="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-2">
+                {partners.map((partner) => (
+                  <div
+                    key={partner.name}
+                    className="flex items-center justify-center rounded-[1.65rem] border border-white/10 bg-white/5 px-4 py-6"
+                  >
+                    <img src={partner.logo} alt={partner.name} className="h-14 w-auto object-contain" loading="lazy" />
+                  </div>
+                ))}
+              </div>
+            </div>
+            <div className="rounded-[2.25rem] border border-white/10 bg-carbon/90 p-8">
+              <p className="text-xs uppercase tracking-[0.4em] text-white/50">Work With Us</p>
+              <p className="mt-3 text-sm text-white/60">
+                Want to be visible alongside Jinx Esport? Reach out and we will tailor a partnership that matches your
+                goals.
+              </p>
+              <Link
+                to="/contact"
+                className="mt-6 inline-flex items-center rounded-full bg-fuchsia px-6 py-3 text-xs font-semibold uppercase tracking-[0.35em] text-void transition hover:bg-white"
+              >
+                Contact
+              </Link>
             </div>
           </div>
         </div>
@@ -146,3 +196,12 @@ const HomePage = () => {
 };
 
 export default HomePage;
+
+
+
+
+
+
+
+
+

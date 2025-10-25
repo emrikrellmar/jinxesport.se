@@ -40,6 +40,14 @@ export const academyRoster: Player[] = Array.from({ length: 5 }, () => ({
   status: "TBA",
 }));
 
+export const leagueRoster: Player[] = Array.from({ length: 5 }, (_, index) => ({
+  handle: `TBA`,
+  name: "TBA",
+  role: ["Top Lane", "Jungle", "Mid Lane", "Bot Lane", "Support"][index] ?? "Player",
+  photo: silhouetteImg,
+  status: "TBA",
+}));
+
 export const staff: StaffMember[] = [
   {
     name: "Jonas Johansson",
