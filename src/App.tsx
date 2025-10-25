@@ -5,6 +5,9 @@ import Footer from './components/Footer';
 import HomePage from './pages/HomePage';
 import TeamPage from './pages/TeamPage';
 import NotFoundPage from './pages/NotFoundPage';
+import TeamsOverviewPage from './pages/TeamsOverviewPage';
+import AboutPage from './pages/AboutPage';
+import ContactPage from './pages/ContactPage';
 import { academyRoster, mainRoster } from './data/rosters';
 
 const App = () => {
@@ -24,6 +27,7 @@ const App = () => {
       <main className="relative mx-auto flex w-full max-w-7xl flex-1 flex-col gap-20 px-6 pb-16 pt-28 md:px-12 md:pt-36">
         <Routes location={location} key={location.pathname}>
           <Route path="/" element={<HomePage />} />
+          <Route path="/teams" element={<TeamsOverviewPage />} />
           <Route
             path="/teams/main"
             element={
@@ -44,6 +48,8 @@ const App = () => {
               />
             }
           />
+          <Route path="/about" element={<AboutPage />} />
+          <Route path="/contact" element={<ContactPage />} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </main>
