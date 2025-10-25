@@ -4,6 +4,7 @@ const initialForm = {
   name: "",
   email: "",
   phone: "",
+  personalNumber: "",
   discord: "",
   city: "",
   optInEmails: false,
@@ -39,6 +40,8 @@ const MembershipForm = () => {
     const missing: string[] = [];
     if (!form.name.trim()) missing.push("name");
     if (!form.email.trim()) missing.push("email");
+    if (!form.personalNumber.trim()) missing.push("personalNumber");
+    else if (!/^[0-9]{12}$/.test(form.personalNumber)) missing.push("personalNumber");
     if (!form.discord.trim()) missing.push("discord");
     if (!form.city.trim()) missing.push("city");
 
@@ -130,6 +133,23 @@ const MembershipForm = () => {
                 aria-invalid={missingFields.includes("name")}
                 aria-required="true"
               />
+            </div>
+            <div className="space-y-2">
+              <label htmlFor="personalNumber" className="text-xs uppercase tracking-[0.35em] text-white/60">
+                Personal number (YYYYMMDDXXXX) <span className="ml-1 font-medium text-rose-400">*</span>
+              </label>
+              <input
+                id="personalNumber"
+                name="personalNumber"
+                type="text"
+                value={(form as any).personalNumber}
+                onChange={handleChange}
+                className={inputClasses("personalNumber")}
+                aria-invalid={missingFields.includes("personalNumber")}
+                aria-required="true"
+                placeholder="e.g. 199001018765"
+              />
+              <p className="mt-1 text-xs text-white/50">Enter your personal number as 12 digits: YYYYMMDDXXXX.</p>
             </div>
             <div className="space-y-2">
               <label htmlFor="email" className="text-xs uppercase tracking-[0.35em] text-white/60">

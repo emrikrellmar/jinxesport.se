@@ -40,6 +40,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     name,
     email,
     phone,
+    personalNumber,
     discord,
     city,
     optInEmails = false,
@@ -53,10 +54,18 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     return;
   }
 
+  // Validate personal number format: 12 digits YYYYMMDDXXXX
+  if (!personalNumber || !/^[0-9]{12}$/.test(String(personalNumber))) {
+    res.status(400).json({
+      error: 'Invalid or missing personal number. Please provide your personal number in the format YYYYMMDDXXXX (12 digits).',
+    });
+    return;
+  }
+
   const registrationDate = new Date().toISOString();
 
   try {
-    // Build properties matching the Notion database exactly.
+  // Build properties matching the Notion database exactly.
     // Note: property names are case-sensitive and must match the database.
     const properties: Record<string, any> = {
       Name: {
@@ -103,10 +112,52 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       properties.Phone = { phone_number: String(phone) };
     }
 
-    await notion.pages.create({
-      parent: { database_id: notionDatabaseId },
-      properties,
-    });
+    // Add personal/security number. Try sending as Number type first (some DBs use number),
+    // then fallback to rich_text if Notion rejects the type. We'll attempt the create and retry on failure.
+    const personalNumValue = String(personalNumber);
+    properties['Security number'] = { number: Number(personalNumValue) };
+
+    // Attempt create; if Notion rejects the property type or name, try fallbacks.
+    try {
+      await notion.pages.create({ parent: { database_id: notionDatabaseId }, properties });
+    } catch (err) {
+      // If the first attempt fails, try as rich_text for 'Security number'.
+      try {
+        const altProps = { ...properties };
+        altProps['Security number'] = {
+          rich_text: [
+            {
+              text: { content: personalNumValue },
+            },
+          ],
+        };
+
+        await notion.pages.create({ parent: { database_id: notionDatabaseId }, properties: altProps });
+      } catch (err2) {
+        // Final fallback: try the alternative column name the user mentioned.
+        const altName = 'Personal number (social security number)';
+        try {
+          const altProps2 = { ...properties };
+          altProps2[altName] = { number: Number(personalNumValue) };
+          // remove original Security number to avoid duplicate/unknown property errors
+          delete altProps2['Security number'];
+          await notion.pages.create({ parent: { database_id: notionDatabaseId }, properties: altProps2 });
+        } catch (err3) {
+          // As last resort, try altName as rich_text
+          const altProps3 = { ...properties };
+          delete altProps3['Security number'];
+          altProps3[altName] = {
+            rich_text: [
+              {
+                text: { content: personalNumValue },
+              },
+            ],
+          };
+
+          await notion.pages.create({ parent: { database_id: notionDatabaseId }, properties: altProps3 });
+        }
+      }
+    }
 
     res.status(201).json({ ok: true });
   } catch (error) {
