@@ -1,4 +1,4 @@
-﻿import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import jerseyImage from "../assets/playerjersey.png";
 import sponsorAjotech from "../assets/sponsor1.png";
 import sponsorCollective from "../assets/sponsor2.png";
@@ -7,6 +7,7 @@ import partnerCommunity from "../assets/partner2.png";
 import iconX from "../assets/xlogo.png";
 import iconDiscord from "../assets/discordlogo.png";
 import TwitterFeed from "../components/TwitterFeed";
+import MembershipForm from "../components/MembershipForm";
 
 const sponsors = [
   { name: "Ajotech AB", logo: sponsorAjotech, size: "large" as const },
@@ -121,6 +122,8 @@ const HomePage = () => {
         </div>
       </section>
 
+      <MembershipForm />
+
       <section className="rounded-[2.75rem] border border-white/10 bg-carbon/95 p-10 shadow-[0_22px_60px_rgba(255,0,127,0.16)] md:p-16">
         <div className="space-y-10">
           <div className="space-y-3 text-left">
@@ -190,13 +193,3 @@ const HomePage = () => {
 };
 
 export default HomePage;
-
-
-
-
-
-
-
-
-
-

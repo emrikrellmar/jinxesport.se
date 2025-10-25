@@ -15,8 +15,8 @@ const timelineEvents = [
   },
   {
     date: '15 July 2025',
-    title: 'Bååten joins for ESEA S54',
-    body: 'Linus "Bååten" Andersson commits to J!nX for ESEA League Season 54, adding tier-one experience and leadership in high-pressure matches. Forming the roster with emme1, Bååten, kevvzozo, wezsen and kreppo.',
+    title: 'Baaten joins for ESEA S54',
+    body: 'Linus "Baaten" Andersson commits to J!nX for ESEA League Season 54, adding tier-one experience and leadership in high-pressure matches. Forming the roster with emme1, Baaten, kevvzozo, wezsen and kreppo.',
   },
   {
     date: '31 August 2025',
@@ -42,7 +42,7 @@ const leadership = [
     avatar: silhouetteMale,
   },
   {
-    name: 'Catrin Lidström',
+    name: 'Catrin Lidstrom',
     role: 'Treasurer',
     avatar: catrinPhoto,
   },
@@ -171,6 +171,10 @@ const AboutPage = () => (
 );
 
 export default AboutPage;
+
+
+
+
 
 
 
