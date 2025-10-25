@@ -71,7 +71,9 @@ const MembershipForm = () => {
 
       if (!response.ok) {
         const detail = await response.json().catch(() => ({}));
-        throw new Error(detail?.error ?? "Unexpected error while submitting form.");
+        // Accept several shapes from the server: { error }, { error, detail }, { message }
+        const serverMessage = detail?.error ?? detail?.detail ?? detail?.message ?? "Unexpected error while submitting form.";
+        throw new Error(serverMessage);
       }
 
       setSubmission({ status: "success" });
