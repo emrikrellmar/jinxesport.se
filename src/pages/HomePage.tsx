@@ -6,7 +6,6 @@ import partnerAlliance from "../assets/partner1.png";
 import partnerCommunity from "../assets/partner2.png";
 import iconX from "../assets/xlogo.png";
 import iconDiscord from "../assets/discordlogo.png";
-import TwitterFeed from "../components/TwitterFeed";
 import MembershipForm from "../components/MembershipForm";
 
 const sponsors = [
@@ -107,20 +106,7 @@ const HomePage = () => {
         </div>
       </section>
 
-      <section className="rounded-[2.75rem] border border-white/10 bg-carbon/95 p-10 shadow-[0_22px_60px_rgba(255,0,127,0.16)] md:p-16">
-        <div className="space-y-6">
-          <div className="text-center md:text-left">
-            <p className="text-xs uppercase tracking-[0.4em] text-white/50">Live Updates</p>
-            <h2 className="font-display text-3xl uppercase tracking-[0.25em] text-snow md:text-4xl">
-              X Feed From @jinxesport
-            </h2>
-            <p className="mt-4 text-base text-white/60">
-              See the latest posts straight from X. New updates drop here the moment they go live.
-            </p>
-          </div>
-          <TwitterFeed />
-        </div>
-      </section>
+      {/* Twitter/X feed removed temporarily */}
 
       <MembershipForm />
 
