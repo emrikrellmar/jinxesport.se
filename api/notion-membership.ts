@@ -25,15 +25,14 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     email,
     phone,
     discord,
-    personalNumber,
     city,
     optInEmails = false,
     gdprConsent,
   } = body ?? {};
 
-  if (!fullName || !email || !discord || !personalNumber || !city || gdprConsent !== true) {
+  if (!fullName || !email || !discord || !city || gdprConsent !== true) {
     res.status(400).json({
-      error: 'Missing required fields. Ensure fullName, email, discord, personalNumber, city are provided and GDPR consent is checked.',
+      error: 'Missing required fields. Ensure fullName, email, discord, and city are provided and GDPR consent is checked.',
     });
     return;
   }
@@ -61,13 +60,6 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
           rich_text: [
             {
               text: { content: discord },
-            },
-          ],
-        },
-        'Personal Number': {
-          rich_text: [
-            {
-              text: { content: personalNumber },
             },
           ],
         },

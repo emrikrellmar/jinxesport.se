@@ -5,7 +5,6 @@ const initialForm = {
   email: "",
   phone: "",
   discord: "",
-  personalNumber: "",
   city: "",
   optInEmails: false,
   gdprConsent: false,
@@ -38,7 +37,6 @@ const MembershipForm = () => {
     if (!form.fullName.trim()) missingFields.push("Full Name");
     if (!form.email.trim()) missingFields.push("Email");
     if (!form.discord.trim()) missingFields.push("Discord Name");
-    if (!form.personalNumber.trim()) missingFields.push("Personal Number");
     if (!form.city.trim()) missingFields.push("City / Town");
 
     if (missingFields.length) {
@@ -152,20 +150,6 @@ const MembershipForm = () => {
               />
             </div>
             <div className="space-y-2">
-              <label htmlFor="personalNumber" className="text-xs uppercase tracking-[0.35em] text-white/60">
-                Personal Number
-              </label>
-              <input
-                id="personalNumber"
-                name="personalNumber"
-                type="text"
-                required
-                value={form.personalNumber}
-                onChange={handleChange}
-                className="w-full rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-white placeholder:text-white/40 focus:border-fuchsia focus:outline-none focus:ring-2 focus:ring-fuchsia/40"
-              />
-            </div>
-            <div className="space-y-2">
               <label htmlFor="city" className="text-xs uppercase tracking-[0.35em] text-white/60">
                 City / Town
               </label>
@@ -226,3 +210,5 @@ const MembershipForm = () => {
 };
 
 export default MembershipForm;
+
+
