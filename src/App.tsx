@@ -1,16 +1,11 @@
-﻿import { useEffect } from 'react';
+import { useEffect } from 'react';
 import { Route, Routes, useLocation } from 'react-router-dom';
-import { Analytics } from '@vercel/analytics/react';
-import { SpeedInsights } from '@vercel/speed-insights/react';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import HomePage from './pages/HomePage';
 import TeamPage from './pages/TeamPage';
 import NotFoundPage from './pages/NotFoundPage';
-import { academyRoster, leagueRoster, mainRoster } from './data/rosters';
-import AboutPage from './pages/AboutPage';
-import ContactPage from './pages/ContactPage';
-import TeamsOverviewPage from './pages/TeamsOverviewPage';
+import { academyRoster, mainRoster } from './data/rosters';
 
 const App = () => {
   const location = useLocation();
@@ -20,7 +15,7 @@ const App = () => {
   }, [location.pathname]);
 
   return (
-    <div className="relative flex min-h-screen flex-col bg-void text-snow">
+    <div className="relative min-h-screen bg-void text-snow">
       <div className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
         <div className="absolute -top-32 left-1/2 h-80 w-80 -translate-x-1/2 rounded-full bg-fuchsia/15 blur-[140px]" />
         <div className="absolute -bottom-32 right-10 h-72 w-72 rounded-full bg-fuchsia/10 blur-[160px]" />
@@ -29,24 +24,13 @@ const App = () => {
       <main className="relative mx-auto flex w-full max-w-7xl flex-1 flex-col gap-20 px-6 pb-16 pt-28 md:px-12 md:pt-36">
         <Routes location={location} key={location.pathname}>
           <Route path="/" element={<HomePage />} />
-          <Route path="/teams" element={<TeamsOverviewPage />} />
           <Route
             path="/teams/main"
             element={
               <TeamPage
-                teamName="Counter-Strike Main Team"
-                tagline="Core lineup competing in ESEA league and swedish regionserien"
+                teamName="Main Team"
+                tagline="Core lineup competing in European circuits"
                 roster={mainRoster}
-              />
-            }
-          />
-          <Route
-            path="/teams/league"
-            element={
-              <TeamPage
-                teamName="League of Legends"
-                tagline="Lineup under construction – recruitment in progress"
-                roster={leagueRoster}
               />
             }
           />
@@ -54,24 +38,18 @@ const App = () => {
             path="/teams/academy"
             element={
               <TeamPage
-                teamName="Counter-Strike Academy"
-                tagline="Up and coming talents in the swedish cs scene"
+                teamName="Academy team"
+                tagline="Trials underway for the next wave of talent"
                 roster={academyRoster}
               />
             }
           />
-          <Route path="/about" element={<AboutPage />} />
-          <Route path="/contact" element={<ContactPage />} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </main>
       <Footer />
-      <Analytics />
-      <SpeedInsights />
     </div>
   );
 };
 
 export default App;
-
-
