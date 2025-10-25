@@ -8,6 +8,7 @@ import NotFoundPage from './pages/NotFoundPage';
 import TeamsOverviewPage from './pages/TeamsOverviewPage';
 import AboutPage from './pages/AboutPage';
 import ContactPage from './pages/ContactPage';
+import GDPRPage from './pages/GDPRPage';
 import { academyRoster, mainRoster } from './data/rosters';
 
 const App = () => {
@@ -49,6 +50,7 @@ const App = () => {
             }
           />
           <Route path="/about" element={<AboutPage />} />
+          <Route path="/gdpr" element={<GDPRPage />} />
           <Route path="/contact" element={<ContactPage />} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
