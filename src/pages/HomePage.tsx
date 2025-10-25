@@ -120,23 +120,44 @@ const HomePage = () => {
           </div>
 
           <div className="rounded-[2rem] border border-white/10 bg-white/5 p-6">
-            <div className="flex flex-nowrap justify-center gap-6 overflow-hidden">
-              {sponsorTiles.map((sponsor, index) => {
-                const sizeClass = sponsor.size === "large" ? "h-16 sm:h-20 md:h-24 xl:h-28" : "h-14 sm:h-16 md:h-20";
-                return (
-                  <div
-                    key={`${sponsor.name}-${index}`}
-                    className="flex flex-1 min-w-[8rem] items-center justify-center rounded-[1.35rem] border border-white/10 bg-white/5 px-6 py-6"
-                  >
-                    <img
-                      src={sponsor.logo}
-                      alt={sponsor.name}
-                      className={`${sizeClass} w-auto object-contain`}
-                      loading="lazy"
-                    />
-                  </div>
-                );
-              })}
+            {/* Infinite left-to-right marquee for sponsors */}
+            <div className="relative overflow-hidden">
+              <div className="sponsor-track">
+                {sponsorTiles.map((sponsor, index) => {
+                  const sizeClass = sponsor.size === "large" ? "h-16 sm:h-20 md:h-24 xl:h-28" : "h-14 sm:h-16 md:h-20";
+                  return (
+                    <div
+                      key={`marquee-a-${sponsor.name}-${index}`}
+                      className="flex items-center justify-center rounded-[1.35rem] border border-white/10 bg-white/5 px-6 py-6 mr-6"
+                    >
+                      <img
+                        src={sponsor.logo}
+                        alt={sponsor.name}
+                        className={`${sizeClass} w-auto object-contain`}
+                        loading="lazy"
+                      />
+                    </div>
+                  );
+                })}
+
+                {sponsorTiles.map((sponsor, index) => {
+                  // duplicate items to create a seamless infinite loop
+                  const sizeClass = sponsor.size === "large" ? "h-16 sm:h-20 md:h-24 xl:h-28" : "h-14 sm:h-16 md:h-20";
+                  return (
+                    <div
+                      key={`marquee-b-${sponsor.name}-${index}`}
+                      className="flex items-center justify-center rounded-[1.35rem] border border-white/10 bg-white/5 px-6 py-6 mr-6"
+                    >
+                      <img
+                        src={sponsor.logo}
+                        alt={sponsor.name}
+                        className={`${sizeClass} w-auto object-contain`}
+                        loading="lazy"
+                      />
+                    </div>
+                  );
+                })}
+              </div>
             </div>
           </div>
 
