@@ -56,48 +56,56 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   const registrationDate = new Date().toISOString();
 
   try {
-    await notion.pages.create({
-      parent: { database_id: notionDatabaseId },
-      properties: {
-        Name: {
-          title: [
-            {
-              text: { content: name },
-            },
-          ],
-        },
-        Email: {
-          email,
-        },
-        Phone: {
-          phone_number: phone ?? '',
-        },
-        Discord: {
-          rich_text: [
-            {
-              text: { content: discord },
-            },
-          ],
-        },
-        City: {
-          rich_text: [
-            {
-              text: { content: city },
-            },
-          ],
-        },
-        'Mail Opt-in': {
-          checkbox: Boolean(optInEmails),
-        },
-        'GDPR Consent': {
-          checkbox: Boolean(gdprConsent),
-        },
-        'Registration Date': {
-          date: {
-            start: registrationDate,
+    // Build properties matching the Notion database exactly.
+    // Note: property names are case-sensitive and must match the database.
+    const properties: Record<string, any> = {
+      Name: {
+        title: [
+          {
+            text: { content: name },
           },
+        ],
+      },
+      Email: {
+        email,
+      },
+      // Only include Phone if provided to avoid sending empty strings for phone_number.
+      Discord: {
+        rich_text: [
+          {
+            text: { content: discord },
+          },
+        ],
+      },
+      City: {
+        rich_text: [
+          {
+            text: { content: city },
+          },
+        ],
+      },
+      'Mail Opt-in': {
+        checkbox: Boolean(optInEmails),
+      },
+      'GDPR Consent': {
+        checkbox: Boolean(gdprConsent),
+      },
+      // The Notion database screenshot shows this column as "Registration date" (lowercase 'd')
+      // — use the exact name so Notion accepts the property.
+      'Registration date': {
+        date: {
+          start: registrationDate,
         },
       },
+    };
+
+    if (phone && String(phone).trim() !== '') {
+      properties.Phone = { phone_number: String(phone) };
+    }
+
+    await notion.pages.create({
+      parent: { database_id: notionDatabaseId },
+      properties,
     });
 
     res.status(201).json({ ok: true });
