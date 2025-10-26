@@ -69,7 +69,23 @@ const AboutPage = () => {
         }
 
         if (!contentType.includes('application/json')) {
-          // Likely running in Vite dev where the file is served as JS; skip parsing and warn.
+          // If we're in dev, try a static JSON fallback in public/ so local dev can show a count.
+          if (import.meta.env.DEV) {
+            try {
+              const devResp = await fetch('/notion-members-count.json');
+              if (devResp.ok) {
+                const d = await devResp.json();
+                if (!mounted) return;
+                if (d && typeof d.count === 'number') {
+                  setMembersCount(d.count);
+                }
+                return;
+              }
+            } catch (err) {
+              console.warn('Failed to load dev fallback for members count', err);
+            }
+          }
+
           const txt = await resp.text();
           console.warn('Notion members count: unexpected content-type, skipping JSON parse. Sample:', txt.slice(0, 300));
           return;
@@ -102,9 +118,9 @@ const AboutPage = () => {
           Built On Competition And Care
         </h1>
         {membersCount !== null ? (
-          <div className="mt-2 inline-block rounded-full bg-white/5 px-3 py-1 text-sm font-semibold text-snow">Medlemmar: {membersCount}</div>
+          <div className="mt-2 inline-block rounded-full bg-white/5 px-3 py-1 text-sm font-semibold text-snow">Members: {membersCount}</div>
         ) : (
-          <div className="mt-2 inline-block rounded-full bg-white/5 px-3 py-1 text-sm text-white/60">Läser medlemmar…</div>
+          <div className="mt-2 inline-block rounded-full bg-white/5 px-3 py-1 text-sm text-white/60">Loading members…</div>
         )}
         <p className="max-w-2xl text-base text-white/70 md:text-lg">
           Founded in 2025 and based in Avesta, Sweden, jinx esport is a growing esports organization built on two strong
