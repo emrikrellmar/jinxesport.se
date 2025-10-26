@@ -12,7 +12,7 @@ import AboutPage from './pages/AboutPage';
 import ContactPage from './pages/ContactPage';
 import GDPRPage from './pages/GDPRPage';
 import FAQPage from './pages/FAQPage';
-import { academyRoster, mainRoster } from './data/rosters';
+import { academyRoster, mainRoster, leagueRoster } from './data/rosters';
 
 const App = () => {
   const location = useLocation();
@@ -49,6 +49,16 @@ const App = () => {
                 teamName="Academy team"
                 tagline="Trials underway for the next wave of talent"
                 roster={academyRoster}
+              />
+            }
+          />
+          <Route
+            path="/teams/league"
+            element={
+              <TeamPage
+                teamName="League of Legends"
+                tagline="League roster in formation, recruitment and trials ongoing"
+                roster={leagueRoster}
               />
             }
           />
