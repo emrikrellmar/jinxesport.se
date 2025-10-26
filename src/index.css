@@ -240,4 +240,26 @@
     transform: translateY(-6px) scale(1.03);
     box-shadow: 0 18px 60px rgba(255,0,127,0.12);
   }
+  /* Collapse utilities for FAQ accordion */
+  .collapse-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 320ms ease, opacity 240ms ease, transform 240ms ease;
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+
+  .collapse-open {
+    max-height: 800px; /* large enough for typical content */
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .chev-rotate {
+    transition: transform 240ms ease;
+  }
+
+  .chev-rotate.open {
+    transform: rotate(180deg);
+  }
 }

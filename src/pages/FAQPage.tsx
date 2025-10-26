@@ -32,14 +32,35 @@ const faqs = [
   },
 ];
 
-const Question = ({ q, a }: { q: string; a: string }) => (
-  <div className="rounded-2xl border border-white/8 bg-carbon/70 p-6 shadow-sm">
-    <h3 className="font-display text-lg uppercase tracking-[0.18em] text-snow">{q}</h3>
-    <p className="mt-3 text-sm text-white/70">{a}</p>
-  </div>
-);
+import { useState } from 'react';
+
+const Question = ({ q, a, index, openIndex, setOpenIndex }: { q: string; a: string; index: number; openIndex: number | null; setOpenIndex: (n: number | null) => void; }) => {
+  const open = openIndex === index;
+  return (
+    <div className="rounded-2xl border border-white/8 bg-carbon/70 shadow-sm">
+      <button
+        aria-expanded={open}
+        aria-controls={`faq-${index}`}
+        className="w-full flex items-center justify-between gap-4 p-6 text-left"
+        onClick={() => setOpenIndex(open ? null : index)}
+      >
+        <span className="block">
+          <h3 className="font-display text-lg uppercase tracking-[0.18em] text-snow">{q}</h3>
+        </span>
+        <svg className={`h-5 w-5 text-white/60 chev-rotate ${open ? 'open' : ''}`} viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden>
+          <path d="M5 8l5 5 5-5" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+        </svg>
+      </button>
+
+      <div id={`faq-${index}`} className={`px-6 pb-6 collapse-content ${open ? 'collapse-open' : ''}`} role="region" aria-labelledby={`faq-${index}-header`}>
+        <p className="text-sm text-white/70">{a}</p>
+      </div>
+    </div>
+  );
+};
 
 const FAQPage = () => {
+  const [openIndex, setOpenIndex] = useState<number | null>(0);
   return (
     <div className="space-y-12">
       <header className="space-y-3">
@@ -49,8 +70,8 @@ const FAQPage = () => {
       </header>
 
       <section className="grid gap-6 md:grid-cols-2">
-        {faqs.map((f) => (
-          <Question key={f.q} q={f.q} a={f.a} />
+        {faqs.map((f, i) => (
+          <Question key={f.q} q={f.q} a={f.a} index={i} openIndex={openIndex} setOpenIndex={setOpenIndex} />
         ))}
       </section>
 
