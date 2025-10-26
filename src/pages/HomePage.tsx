@@ -6,6 +6,8 @@ import partnerAlliance from "../assets/partner1.png";
 import partnerCommunity from "../assets/partner2.png";
 import iconX from "../assets/xlogo.png";
 import iconDiscord from "../assets/discordlogo.png";
+import { useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import MembershipForm from "../components/MembershipForm";
 
 const sponsors = [
@@ -108,7 +110,15 @@ const HomePage = () => {
 
       {/* Twitter/X feed removed temporarily */}
 
-      <MembershipForm />
+      <div id="membership-form" className="transition-all duration-500">
+        <MembershipForm />
+      </div>
+
+      {/* Scroll to membership form when linking with hash */}
+      <ScrollToMembership />
+
+      {/* local helper to perform smooth scroll when location.hash is set to the membership anchor */}
+      
 
       <section className="rounded-[2.75rem] border border-white/10 bg-carbon/95 p-10 shadow-[0_22px_60px_rgba(255,0,127,0.16)] md:p-16">
         <div className="space-y-10">
@@ -208,3 +218,21 @@ const HomePage = () => {
 };
 
 export default HomePage;
+
+function ScrollToMembership() {
+  const location = useLocation();
+
+  useEffect(() => {
+    if (location.hash === '#membership-form') {
+      const el = document.getElementById('membership-form');
+      if (el) {
+        // smooth scroll and a brief highlight
+        setTimeout(() => el.scrollIntoView({ behavior: 'smooth', block: 'center' }), 80);
+        el.classList.add('highlight-flash');
+        setTimeout(() => el.classList.remove('highlight-flash'), 2000);
+      }
+    }
+  }, [location.hash]);
+
+  return null;
+}

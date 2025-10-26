@@ -104,7 +104,12 @@ const Navbar = () => {
         </nav>
 
         <div className="hidden items-center justify-end gap-3 md:flex">
-          {externalLinks.map((link) => renderExternal(link))}
+          <NavLink
+            to="/#membership-form"
+            className="inline-flex items-center rounded-full bg-fuchsia px-4 py-2 text-xs font-semibold uppercase tracking-[0.35em] text-void transition hover:bg-white md:px-5 md:py-2"
+          >
+            Become a member
+          </NavLink>
         </div>
 
         <button
