@@ -4,6 +4,7 @@ import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import CookieConsent from './components/CookieConsent';
 import CookiesPage from './pages/CookiesPage';
+import ScrollToHash from './components/ScrollToHash';
 import HomePage from './pages/HomePage';
 import TeamPage from './pages/TeamPage';
 import NotFoundPage from './pages/NotFoundPage';
@@ -69,6 +70,7 @@ const App = () => {
           <Route path="/contact" element={<ContactPage />} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
+        <ScrollToHash />
       </main>
       <Footer />
       <CookieConsent />
