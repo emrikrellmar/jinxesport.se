@@ -55,7 +55,12 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
         if (JINX_DEBUG && debug.firstPageLength === undefined) {
           debug.firstPageLength = resp.results?.length ?? 0;
           // try to gather a few parent shapes
-          debug.sampleParents = (resp.results ?? []).slice(0, 3).map((r: any) => r?.parent ?? null);
+          const sample = (resp.results ?? []).slice(0, 3).map((r: any) => r?.parent ?? null);
+          debug.sampleParents = sample;
+          // capture parent database ids and whether they match the env DB id
+          const sampleParentDbIds: any[] = sample.map((p: any) => p?.database_id ?? p?.database?.id ?? p?.databaseId ?? p?.id ?? null);
+          debug.sampleParentDbIds = sampleParentDbIds;
+          debug.sampleMatches = sampleParentDbIds.map((id: any) => id === notionDatabaseId);
         }
 
         total += resp.results?.length ?? 0;
@@ -85,6 +90,9 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
         if (JINX_DEBUG && debugParents.length > 0) {
           debug.sampleParents = debugParents;
           debug.firstPageLength = debug.firstPageLength ?? results.length;
+          const sampleParentDbIds: any[] = debugParents.map((p: any) => p?.database_id ?? p?.database?.id ?? p?.databaseId ?? p?.id ?? null);
+          debug.sampleParentDbIds = sampleParentDbIds;
+          debug.sampleMatches = sampleParentDbIds.map((id: any) => id === notionDatabaseId);
         }
 
         next_cursor = resp.has_more ? (resp.next_cursor as string | undefined) : undefined;
@@ -93,10 +101,12 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
     if (JINX_DEBUG) {
       // safe debug output: do NOT expose tokens. Mask DB id for privacy.
-      const maskedDb = notionDatabaseId ? `${String(notionDatabaseId).slice(0, 4)}...${String(notionDatabaseId).slice(-4)}` : null;
-      debug.hasSecret = Boolean(notionSecret);
-      debug.hasDbId = Boolean(notionDatabaseId);
-      debug.maskedDatabaseId = maskedDb;
+  const maskedDb = notionDatabaseId ? `${String(notionDatabaseId).slice(0, 4)}...${String(notionDatabaseId).slice(-4)}` : null;
+  debug.hasSecret = Boolean(notionSecret);
+  debug.hasDbId = Boolean(notionDatabaseId);
+  debug.maskedDatabaseId = maskedDb;
+  // Expose the full DB id in debug mode to help diagnose mismatches (non-secret)
+  debug.notionDatabaseId = notionDatabaseId;
       debug.count = total;
       res.status(200).json(debug);
       return;
