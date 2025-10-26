@@ -2,6 +2,7 @@ import mailIcon from '../assets/mailicon.webp';
 import braxenPhoto from '../assets/Braxen.png';
 import silhouetteMale from '../assets/silhouette.png';
 import catrinPhoto from '../assets/catrin.png';
+import FAQPage from './FAQPage';
 
 const contacts = [
   {
@@ -64,6 +65,10 @@ const ContactPage = () => (
           </div>
         ))}
       </div>
+    </section>
+
+    <section>
+      <FAQPage />
     </section>
   </div>
 );
