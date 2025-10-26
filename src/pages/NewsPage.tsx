@@ -129,6 +129,7 @@ const NewsPage = () => {
                   key={post.id}
                   className="group rounded-[2.25rem] border border-white/10 bg-carbon/90 p-8 shadow-[0_22px_60px_rgba(255,0,127,0.16)] transition hover:border-fuchsia/40 hover:bg-carbon"
                 >
+                  {/* Picture at the top */}
                   {post.featuredImage && (
                     <div className="mb-6 overflow-hidden rounded-2xl">
                       <img
@@ -140,20 +141,18 @@ const NewsPage = () => {
                     </div>
                   )}
                   
-                  <div className="space-y-4">
-                    <div className="space-y-2">
-                      <p className="text-xs uppercase tracking-[0.4em] text-white/45">
-                        {formatDate(post.date)} • {post.author}
-                      </p>
-                      <h2 className="font-display text-xl uppercase tracking-[0.2em] text-snow line-clamp-2">
-                        {post.title}
-                      </h2>
-                    </div>
-                    
-                    <p className="text-sm text-white/65 line-clamp-3 break-words overflow-wrap-anywhere max-w-full">
-                      {truncateContent(post.content)}
-                    </p>
-                    
+                  {/* Title below picture */}
+                  <h2 className="font-display text-xl uppercase tracking-[0.2em] text-snow line-clamp-2 mb-4">
+                    {post.title}
+                  </h2>
+                  
+                  {/* Content below title */}
+                  <p className="text-sm text-white/65 line-clamp-3 break-words overflow-wrap-anywhere max-w-full mb-4">
+                    {truncateContent(post.content)}
+                  </p>
+                  
+                  {/* Read More button below content */}
+                  <div className="mb-4">
                     <Link
                       to={`/news/${post.slug}`}
                       state={{ post }}
@@ -161,6 +160,13 @@ const NewsPage = () => {
                     >
                       Read More
                     </Link>
+                  </div>
+                  
+                  {/* Date & Author at bottom with border */}
+                  <div className="border-t border-white/10 pt-4">
+                    <p className="text-xs uppercase tracking-[0.4em] text-fuchsia/70">
+                      {formatDate(post.date)} • {post.author}
+                    </p>
                   </div>
                 </article>
               ))}
