@@ -51,7 +51,7 @@ const leadership = [
 const AboutPage = () => {
   return (
     <div className="flex flex-col gap-20 pb-12">
-      <section className="relative overflow-hidden rounded-3xl border border-white/10 bg-carbon/80 px-8 py-12 shadow-[0_22px_60px_rgba(255,0,127,0.16)] md:flex md:items-stretch md:gap-12 md:px-14">
+      <section className="relative overflow-hidden rounded-3xl border border-white/10 bg-carbon/80 px-8 py-12 shadow-[0_22px_60px_rgba(255,0,127,0.16)] md:flex md:items-stretch md:gap-12 md:px-14 animate-fadeUp">
         <div className="pointer-events-none absolute inset-0 -z-10 opacity-70">
           <div className="absolute left-1/2 top-0 h-48 w-48 -translate-x-1/2 translate-y-[-40%] rounded-full bg-fuchsia/20 blur-3xl" />
           <div className="absolute bottom-[-25%] right-[-10%] h-56 w-56 rounded-full bg-fuchsia/10 blur-3xl" />
@@ -83,7 +83,7 @@ const AboutPage = () => {
         </div>
       </section>
 
-      <section className="space-y-10">
+  <section className="space-y-10 animate-fadeUp">
         <div className="text-center">
           <p className="text-sm uppercase tracking-[0.45em] text-fuchsia/70">Milestones</p>
           <h2 className="font-display text-3xl uppercase tracking-[0.3em] text-snow md:text-4xl">Timeline Of Growth</h2>
@@ -113,7 +113,7 @@ const AboutPage = () => {
         </div>
       </section>
 
-      <section className="rounded-[2.75rem] border border-white/10 bg-carbon/90 px-8 py-12 shadow-[0_22px_60px_rgba(255,0,127,0.16)] md:px-16">
+  <section className="rounded-[2.75rem] border border-white/10 bg-carbon/90 px-8 py-12 shadow-[0_22px_60px_rgba(255,0,127,0.16)] md:px-16 animate-fadeUp">
         <div className="grid gap-12 lg:grid-cols-2">
           <div className="space-y-4">
             <p className="text-xs uppercase tracking-[0.4em] text-fuchsia/70">Competitive Focus</p>
