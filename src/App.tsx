@@ -2,6 +2,8 @@ import { useEffect } from 'react';
 import { Route, Routes, useLocation } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
+import CookieConsent from './components/CookieConsent';
+import CookiesPage from './pages/CookiesPage';
 import HomePage from './pages/HomePage';
 import TeamPage from './pages/TeamPage';
 import NotFoundPage from './pages/NotFoundPage';
@@ -51,11 +53,13 @@ const App = () => {
           />
           <Route path="/about" element={<AboutPage />} />
           <Route path="/gdpr" element={<GDPRPage />} />
+          <Route path="/cookies" element={<CookiesPage />} />
           <Route path="/contact" element={<ContactPage />} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </main>
       <Footer />
+      <CookieConsent />
     </div>
   );
 };

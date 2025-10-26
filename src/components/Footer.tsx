@@ -85,6 +85,11 @@ const Footer = () => {
                       Privacy and terms
                     </NavLink>
                   </li>
+                  <li>
+                    <NavLink to="/cookies" className={({ isActive }) => (isActive ? 'text-fuchsia' : 'text-white/60')}>
+                      Cookies Policy
+                    </NavLink>
+                  </li>
                 </ul>
               </div>
             </div>
