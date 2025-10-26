@@ -67,7 +67,7 @@ const ContactPage = () => (
       </div>
     </section>
 
-    <section>
+    <section id="faq">
       <FAQPage />
     </section>
   </div>

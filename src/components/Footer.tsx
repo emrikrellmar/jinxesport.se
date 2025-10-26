@@ -47,7 +47,7 @@ const Footer = () => {
                     </NavLink>
                   </li>
                   <li>
-                    <NavLink to="/teams/lol" className={({ isActive }) => (isActive ? 'text-fuchsia' : 'text-white/60')}>
+                    <NavLink to="/teams/league" className={({ isActive }) => (isActive ? 'text-fuchsia' : 'text-white/60')}>
                       League of Legends
                     </NavLink>
                   </li>
@@ -69,7 +69,7 @@ const Footer = () => {
                     </NavLink>
                   </li>
                   <li>
-                    <NavLink to="/faq" className={({ isActive }) => (isActive ? 'text-fuchsia' : 'text-white/60')}>
+                    <NavLink to="/contact#faq" className={({ isActive }) => (isActive ? 'text-fuchsia' : 'text-white/60')}>
                       FAQ
                     </NavLink>
                   </li>
