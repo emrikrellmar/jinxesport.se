@@ -23,10 +23,9 @@ const Footer = () => {
                 <img key={i} src={src} alt={`partner-${i}`} className="h-16 w-auto flex-shrink-0 object-cover" />
               ))}
             </div>
-
-            <div className="grid grid-cols-1 gap-6 md:grid-cols-3 md:items-start">
-              {/* branding + subscribe */}
-              <div>
+            <div className="grid grid-cols-1 gap-6 md:grid-cols-4 md:items-start">
+              {/* Branding / Contact */}
+              <div className="md:col-span-1">
                 <div className="flex items-center gap-3">
                   <img src={logo} alt="Jinx" className="h-10 w-auto" />
                   <div>
@@ -35,32 +34,51 @@ const Footer = () => {
                   </div>
                 </div>
 
-                <p className="mt-3 text-sm text-white/60">Subscribe for news and membership updates.</p>
+                <div className="mt-3 text-sm">
+                  <a href="mailto:info@jinxesport.se" className="text-white/60 hover:text-fuchsia">
+                    info@jinxesport.se
+                  </a>
+                </div>
 
-                <form className="mt-3 flex w-full max-w-sm gap-2" onSubmit={(e) => e.preventDefault()}>
-                  <input
-                    type="email"
-                    placeholder="Your email"
-                    aria-label="Subscribe email"
-                    className="w-full rounded-lg border border-white/6 bg-white/3 px-3 py-2 text-sm text-white placeholder:text-white/40 focus:outline-none"
-                  />
-                  <button type="button" className="rounded-lg bg-fuchsia px-4 py-2 text-sm font-semibold text-void">
-                    Submit
-                  </button>
-                </form>
+                <div className="mt-4 flex items-center gap-3">
+                  <a href="https://x.com/jinxesport" target="_blank" rel="noreferrer" className="text-white/60 hover:text-fuchsia">
+                    <img src={iconX} alt="X" className="h-6 w-6 object-contain" />
+                  </a>
+                  <a href="https://discord.com/invite/M39E4MVAeN" target="_blank" rel="noreferrer" className="text-white/60 hover:text-fuchsia">
+                    <img src={iconDiscord} alt="Discord" className="h-6 w-6 object-contain" />
+                  </a>
+                </div>
               </div>
 
-              {/* navigation */}
-              <nav className="md:col-span-1">
-                <ul className="flex flex-col gap-2 text-sm md:text-base md:flex-col">
+              {/* Teams quick links */}
+              <div className="md:col-span-1">
+                <div className="text-sm font-semibold text-white">Teams</div>
+                <ul className="mt-3 flex flex-col gap-2 text-sm text-white/60">
                   <li>
-                    <NavLink to="/" className={({ isActive }) => (isActive ? 'text-fuchsia' : 'text-white/60')}>
-                      Home
+                    <NavLink to="/teams/main" className={({ isActive }) => (isActive ? 'text-fuchsia' : 'text-white/60')}>
+                      CS2 Main Team
                     </NavLink>
                   </li>
                   <li>
-                    <NavLink to="/teams" className={({ isActive }) => (isActive ? 'text-fuchsia' : 'text-white/60')}>
-                      Teams
+                    <NavLink to="/teams/academy" className={({ isActive }) => (isActive ? 'text-fuchsia' : 'text-white/60')}>
+                      CS2 Academy Team
+                    </NavLink>
+                  </li>
+                  <li>
+                    <NavLink to="/teams/lol" className={({ isActive }) => (isActive ? 'text-fuchsia' : 'text-white/60')}>
+                      League of Legends
+                    </NavLink>
+                  </li>
+                </ul>
+              </div>
+
+              {/* Other quick links */}
+              <div className="md:col-span-1">
+                <div className="text-sm font-semibold text-white">Other</div>
+                <ul className="mt-3 flex flex-col gap-2 text-sm text-white/60">
+                  <li>
+                    <NavLink to="/" className={({ isActive }) => (isActive ? 'text-fuchsia' : 'text-white/60')}>
+                      Home
                     </NavLink>
                   </li>
                   <li>
@@ -73,29 +91,19 @@ const Footer = () => {
                       Contact
                     </NavLink>
                   </li>
+                </ul>
+              </div>
+
+              {/* Legal / small links */}
+              <div className="md:col-span-1">
+                <div className="text-sm font-semibold text-white">Legal</div>
+                <ul className="mt-3 flex flex-col gap-2 text-sm text-white/60">
                   <li>
                     <NavLink to="/gdpr" className={({ isActive }) => (isActive ? 'text-fuchsia' : 'text-white/60')}>
-                      GDPR
+                      Privacy and terms
                     </NavLink>
                   </li>
                 </ul>
-              </nav>
-
-              {/* contact + socials */}
-              <div className="text-right">
-                <div className="text-sm font-medium text-white/90">Contact</div>
-                <a href="mailto:info@jinxesport.se" className="mt-1 inline-block text-sm text-white/60 hover:text-fuchsia">
-                  info@jinxesport.se
-                </a>
-
-                <div className="mt-4 flex items-center justify-end gap-3">
-                  <a href="https://x.com/jinxesport" target="_blank" rel="noreferrer" className="text-white/60 hover:text-fuchsia">
-                    <img src={iconX} alt="X" className="h-6 w-6 object-contain" />
-                  </a>
-                  <a href="https://discord.com/invite/M39E4MVAeN" target="_blank" rel="noreferrer" className="text-white/60 hover:text-fuchsia">
-                    <img src={iconDiscord} alt="Discord" className="h-6 w-6 object-contain" />
-                  </a>
-                </div>
               </div>
             </div>
 
