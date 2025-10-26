@@ -11,6 +11,7 @@ import TeamsOverviewPage from './pages/TeamsOverviewPage';
 import AboutPage from './pages/AboutPage';
 import ContactPage from './pages/ContactPage';
 import GDPRPage from './pages/GDPRPage';
+import FAQPage from './pages/FAQPage';
 import { academyRoster, mainRoster } from './data/rosters';
 
 const App = () => {
@@ -53,6 +54,7 @@ const App = () => {
           />
           <Route path="/about" element={<AboutPage />} />
           <Route path="/gdpr" element={<GDPRPage />} />
+          <Route path="/faq" element={<FAQPage />} />
           <Route path="/cookies" element={<CookiesPage />} />
           <Route path="/contact" element={<ContactPage />} />
           <Route path="*" element={<NotFoundPage />} />

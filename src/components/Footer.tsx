@@ -69,6 +69,11 @@ const Footer = () => {
                     </NavLink>
                   </li>
                   <li>
+                    <NavLink to="/faq" className={({ isActive }) => (isActive ? 'text-fuchsia' : 'text-white/60')}>
+                      FAQ
+                    </NavLink>
+                  </li>
+                  <li>
                     <NavLink to="/contact" className={({ isActive }) => (isActive ? 'text-fuchsia' : 'text-white/60')}>
                       Contact
                     </NavLink>
