@@ -39,6 +39,20 @@ const HomePage = () => {
                   Join jinx esport
                 </Link>
               </div>
+              <div className="flex justify-center md:justify-start gap-3">
+                <Link
+                  to="/teams"
+                  className="inline-flex items-center rounded-full bg-white/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.35em] text-snow transition hover:bg-white/20 hover:text-fuchsia"
+                >
+                  Teams
+                </Link>
+                <Link
+                  to="/about"
+                  className="inline-flex items-center rounded-full bg-white/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.35em] text-snow transition hover:bg-white/20 hover:text-fuchsia"
+                >
+                  About
+                </Link>
+              </div>
               <div className="flex items-center justify-center md:justify-start gap-4">
                 <a
                   href="https://discord.com/invite/M39E4MVAeN"
