@@ -12,6 +12,8 @@ import TeamsOverviewPage from './pages/TeamsOverviewPage';
 import AboutPage from './pages/AboutPage';
 import ContactPage from './pages/ContactPage';
 import GDPRPage from './pages/GDPRPage';
+import NewsPage from './pages/NewsPage';
+import NewsPostPage from './pages/NewsPostPage';
 // FAQ moved into Contact page; standalone FAQPage removed
 import { academyRoster, mainRoster, leagueRoster } from './data/rosters';
 
@@ -64,6 +66,8 @@ const App = () => {
             }
           />
           <Route path="/about" element={<AboutPage />} />
+          <Route path="/news" element={<NewsPage />} />
+          <Route path="/news/:slug" element={<NewsPostPage />} />
           <Route path="/gdpr" element={<GDPRPage />} />
           {/* FAQ is now embedded on the Contact page at /contact#faq */}
           <Route path="/cookies" element={<CookiesPage />} />

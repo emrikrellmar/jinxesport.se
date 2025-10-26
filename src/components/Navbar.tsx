@@ -10,6 +10,7 @@ type NavSection =
 const navStructure: NavSection[] = [
   { type: "link", label: "Home", to: "/" },
   { type: "link", label: "Teams", to: "/teams" },
+  { type: "link", label: "News", to: "/news" },
   { type: "link", label: "About", to: "/about" },
   { type: "link", label: "Contact", to: "/contact" },
 ];
