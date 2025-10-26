@@ -2,27 +2,18 @@ import { NavLink } from 'react-router-dom';
 import logo from '../assets/jinx_logo.png';
 import iconX from '../assets/xlogo.png';
 import iconDiscord from '../assets/discordlogo.png';
-import partner1 from '../assets/partner1.png';
-import partner2 from '../assets/partner2.png';
-import sponsor1 from '../assets/sponsor1.png';
-import sponsor2 from '../assets/sponsor2.png';
 
 const Footer = () => {
   const year = new Date().getFullYear();
 
-  const partners = [partner1, sponsor1, partner2, sponsor2];
+  // no partners/sponsors — footer is intentionally minimal and blends with the page
 
   return (
     <footer className="bg-carbon text-white">
       <div className="w-full bg-carbon/95">
         <div className="mx-auto max-w-7xl px-4 py-6">
-          <div className="rounded-2xl bg-[#0f0b10] p-6 md:p-8">
-            {/* image strip */}
-            <div className="-mx-6 mb-4 flex overflow-hidden rounded-t-xl md:-mx-8">
-              {partners.map((src, i) => (
-                <img key={i} src={src} alt={`partner-${i}`} className="h-16 w-auto flex-shrink-0 object-cover" />
-              ))}
-            </div>
+          {/* simplified container so the footer blends more with the page */}
+          <div className="p-6 md:p-8">
             <div className="grid grid-cols-1 gap-6 md:grid-cols-4 md:items-start">
               {/* Branding / Contact */}
               <div className="md:col-span-1">
