@@ -148,36 +148,33 @@ const NewsPostPage = () => {
           </div>
         )}
 
-        {/* Post Header */}
-        <header className="mb-8 space-y-4">
-          <div className="space-y-2">
-            <p className="text-xs uppercase tracking-[0.4em] text-fuchsia/70">
-              {formatDate(post.date)} • {post.author}
-            </p>
-            <h1 className="font-display text-3xl uppercase tracking-[0.25em] text-snow md:text-4xl lg:text-5xl">
-              {post.title}
-            </h1>
-          </div>
+        {/* Post Title */}
+        <header className="mb-8">
+          <h1 className="font-display text-3xl uppercase tracking-[0.25em] text-snow md:text-4xl lg:text-5xl">
+            {post.title}
+          </h1>
         </header>
 
         {/* Post Content */}
-        <div className="prose prose-invert max-w-none space-y-6 overflow-hidden break-words">
+        <div className="prose prose-invert max-w-none space-y-6 overflow-hidden break-words mb-8">
           {formatContent(post.content)}
         </div>
 
-        {/* Post Footer */}
-        <footer className="mt-12 border-t border-white/10 pt-8">
-          <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-            <p className="text-sm text-white/60">
-              Published by <span className="text-fuchsia">{post.author}</span>
-            </p>
-            <Link
-              to="/news"
-              className="inline-flex items-center rounded-full bg-white/10 px-6 py-3 text-xs font-semibold uppercase tracking-[0.35em] text-snow transition hover:bg-white/20 hover:text-fuchsia"
-            >
-              More Posts
-            </Link>
-          </div>
+        {/* Read More Button */}
+        <div className="mb-8">
+          <Link
+            to="/news"
+            className="inline-flex items-center rounded-full bg-white/10 px-6 py-3 text-xs font-semibold uppercase tracking-[0.35em] text-snow transition hover:bg-white/20 hover:text-fuchsia"
+          >
+            More Posts
+          </Link>
+        </div>
+
+        {/* Date and Author at Bottom */}
+        <footer className="border-t border-white/10 pt-8">
+          <p className="text-xs uppercase tracking-[0.4em] text-fuchsia/70">
+            {formatDate(post.date)} • {post.author}
+          </p>
         </footer>
       </article>
     </div>
