@@ -8,7 +8,7 @@ const Footer = () => {
   // no partners/sponsors — footer is intentionally minimal and blends with the page
 
   return (
-    <footer className="bg-carbon text-white">
+  <footer className="mt-auto bg-carbon text-white">
       <div className="w-full bg-carbon/95">
         <div className="w-full px-4 py-6">
           {/* simplified container so the footer blends more with the page */}
@@ -17,19 +17,12 @@ const Footer = () => {
               {/* Branding / Contact */}
               <div className="md:col-span-1">
                 <div>
-                  <div className="font-display text-lg text-snow">Jinx Esport</div>
-                  <div className="text-xs text-white/60">Let's find harmony together.</div>
-                </div>
-
-                <div className="mt-3 text-sm">
-                  <a href="mailto:info@jinxesport.se" className="text-white/60 hover:text-fuchsia">
-                    info@jinxesport.se
-                  </a>
+                  <div className="text-xs text-white/60">© {year} Jinx Esport. All rights reserved</div>
                 </div>
 
                 <div className="mt-4 flex items-center gap-3">
                   <a href="https://x.com/jinxesport" target="_blank" rel="noreferrer" className="text-white/60 hover:text-fuchsia">
-                    <img src={iconX} alt="X" className="h-6 w-6 object-contain" />
+                    <img src={iconX} alt="X" className="h-7 w-7 object-contain" />
                   </a>
                   <a href="https://discord.com/invite/M39E4MVAeN" target="_blank" rel="noreferrer" className="text-white/60 hover:text-fuchsia">
                     <img src={iconDiscord} alt="Discord" className="h-6 w-6 object-contain" />
@@ -92,11 +85,6 @@ const Footer = () => {
                   </li>
                 </ul>
               </div>
-            </div>
-
-            <div className="mt-6 border-t border-white/6 pt-4 text-center text-xs text-white/50">
-              <div>© {year} Jinx Esport. All rights reserved.</div>
-              <div className="mt-1">Registered association · Privacy and membership terms apply.</div>
             </div>
           </div>
         </div>
