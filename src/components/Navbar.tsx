@@ -72,7 +72,7 @@ const Navbar = () => {
           type="button"
           aria-label="Toggle navigation"
           onClick={() => setIsOpen((prev) => !prev)}
-          className="inline-flex h-11 w-11 items-center justify-center rounded-2xl border border-white/10 bg-ash/70 text-snow md:hidden"
+          className="absolute right-6 top-3 inline-flex h-11 w-11 items-center justify-center rounded-2xl border border-white/10 bg-ash/70 text-snow md:hidden z-50"
         >
           <span className="text-xl">{isOpen ? "\u00D7" : "\u2261"}</span>
         </button>
