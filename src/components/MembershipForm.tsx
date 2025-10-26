@@ -120,7 +120,7 @@ const MembershipForm = () => {
           <div className="grid gap-6 md:grid-cols-2">
             <div className="space-y-2">
               <label htmlFor="name" className="text-xs uppercase tracking-[0.35em] text-white/60">
-                Full Name <span className="ml-1 font-medium text-rose-400">*</span>
+                Full name <span className="ml-1 font-medium text-rose-400">*</span>
               </label>
               <input
                 id="name"

@@ -1,23 +1,20 @@
-// React import intentionally omitted (JSX runtime handles it)
-
 const faqs = [
   {
     q: 'Why do you ask for the last 4 digits of my social security number and my address?',
-    a: 'This is a verification step required by our partners (for example Esport United / Sverok) to prevent duplicate or fraudulent registrations. We only store whatrify your identity and membership; full SSNs are never requested.',
+    a: 'This is a verification step required by our partners to prevent duplicate or fraudulent registrations. We only store what is necessary to verify your identity and membership, full SSNs are never requested.',
   },
   {
     q: "Will I receive advertising or spam after registering?",
-    a: 'No. We do not send unsolicited advertising. From time to time we send important updates about the club or membership — usually only a few messages per year.',
+    a: 'No. We do not send unsolicited advertising. From time to time we send important updates about the club or membership, usually only a few messages per year.',
   },
   {
     q: "Is there a membership fee for jinx esport?",
-    a: "No — membership with jinx esport is free of charge.",
+    a: "No, membership with jinx esport is free of charge.",
   },
   {
     q: 'How do I apply to be a player, coach or staff member?',
-    a: 'Send us an email via the Contact page with a short description of your experience and role of interest. Weollow up with next steps and any trials or interviews.',
+    a: 'Send us an email via the Contact page with a short description of your experience and role of interest. We will follow up with next steps and any trials or interviews.',
   },
-  // additional useful questions
   {
     q: 'How do you handle my personal data?',
     a: 'We process personal data only for membership administration and statutory requirements. You can read more on our Privacy page which explains what we store, why, and how long we keep it.',
