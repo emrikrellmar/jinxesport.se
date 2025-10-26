@@ -150,7 +150,7 @@ const NewsPage = () => {
                       </h2>
                     </div>
                     
-                    <p className="text-sm text-white/65 line-clamp-3">
+                    <p className="text-sm text-white/65 line-clamp-3 break-words">
                       {truncateContent(post.content)}
                     </p>
                     

@@ -87,7 +87,7 @@ const NewsPostPage = () => {
   const formatContent = (content: string) => {
     // Simple formatting - split by newlines and create paragraphs
     return content.split('\n\n').filter(paragraph => paragraph.trim()).map((paragraph, index) => (
-      <p key={index} className="text-base text-white/70 leading-relaxed">
+      <p key={index} className="text-base text-white/70 leading-relaxed break-words">
         {paragraph.trim()}
       </p>
     ));
@@ -161,7 +161,7 @@ const NewsPostPage = () => {
         </header>
 
         {/* Post Content */}
-        <div className="prose prose-invert max-w-none space-y-6">
+        <div className="prose prose-invert max-w-none space-y-6 overflow-hidden">
           {formatContent(post.content)}
         </div>
 

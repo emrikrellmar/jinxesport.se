@@ -83,7 +83,17 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       
       const title = extractPlainText(properties.Title?.title || []) || 'Untitled';
       const content = extractPlainText(properties.Content?.rich_text || []) || '';
-      const author = properties.Author?.select?.name || 'jinx esport';
+      
+      // Handle different author field types
+      let author = 'jinx esport';
+      if (properties.Author?.select?.name) {
+        author = properties.Author.select.name;
+      } else if (properties.Author?.rich_text) {
+        author = extractPlainText(properties.Author.rich_text) || 'jinx esport';
+      } else if (properties.Author?.title) {
+        author = extractPlainText(properties.Author.title) || 'jinx esport';
+      }
+      
       const published = properties.Published?.checkbox || false;
       const date = properties.Date?.date?.start || new Date().toISOString();
       const featuredImage = extractPlainText(properties['Featured image']?.rich_text || []);
