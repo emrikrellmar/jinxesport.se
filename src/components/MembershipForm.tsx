@@ -107,15 +107,13 @@ const MembershipForm = () => {
   return (
     <section className="rounded-[2.75rem] border border-white/10 bg-carbon/95 p-10 shadow-[0_22px_60px_rgba(255,0,127,0.16)] md:p-16">
       <div className="mx-auto max-w-3xl space-y-10">
-        <div className="space-y-4 text-center md:text-left">
+          <div className="space-y-4 text-center md:text-left">
           <p className="text-xs uppercase tracking-[0.4em] text-fuchsia/70">Join The Club</p>
           <h2 className="font-display text-3xl uppercase tracking-[0.25em] text-snow md:text-4xl">
             Become A Member Of Jinx Esport
           </h2>
-          <p className="text-base text-white/60">
-            Fill out the form below to apply for membership in the Jinx Esport association. We will review your
-            submission and reach out with next steps.
-          </p>
+          <p className="text-base text-white/60">Fill out the form below to apply for membership in the Jinx Esport association.</p>
+          <p className="mt-2 text-xs italic text-white/50">Only Swedish citizens with Personal Number are able to currently fill in the form.</p>
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-6">
@@ -149,7 +147,7 @@ const MembershipForm = () => {
                 aria-invalid={missingFields.includes("personalNumber")}
                 aria-required="true"
               />
-              <p className="mt-1 text-xs text-white/50">The format should be in the format YYYYMMDDXXXX</p>
+              <p className="mt-1 text-xs text-white/50">It should be in the format YYYYMMDDXXXX</p>
             </div>
             <div className="space-y-2">
               <label htmlFor="email" className="text-xs uppercase tracking-[0.35em] text-white/60">
@@ -180,7 +178,7 @@ const MembershipForm = () => {
                 aria-invalid={missingFields.includes("phone")}
                 aria-required="true"
               />
-              <p className="mt-1 text-xs text-white/50">Should be in the format +46 70-123 45 67.</p>
+              <p className="mt-1 text-xs text-white/50">Should be in the format 071-234 56 78</p>
             </div>
             <div className="space-y-2">
               <label htmlFor="discord" className="text-xs uppercase tracking-[0.35em] text-white/60">
