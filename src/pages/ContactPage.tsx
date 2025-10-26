@@ -126,7 +126,7 @@ const ContactPage = () => {
       </div>
     </section>
 
-    <section id="faq" className="space-y-8">
+  <section id="faq" className="space-y-8 rounded-[2.75rem] border border-white/10 bg-carbon/95 p-8 md:p-12">
       <header className="space-y-2">
         <p className="text-sm uppercase tracking-[0.45em] text-fuchsia/70">FAQ</p>
         <h2 className="font-display text-2xl uppercase tracking-[0.25em] text-snow">Frequently Asked Questions</h2>
