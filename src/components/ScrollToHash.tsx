@@ -20,13 +20,20 @@ export default function ScrollToHash() {
         el.setAttribute('tabindex', '-1');
         (el as HTMLElement).focus({ preventScroll: true });
         (el as HTMLElement).scrollIntoView({ behavior: 'smooth', block: 'center' });
-        // add brief highlight
-        el.classList.add('highlight-flash');
-        setTimeout(() => {
-          el.classList.remove('highlight-flash');
+
+        // add brief highlight except for FAQ (keep FAQ background plain)
+        if (id !== 'faq') {
+          el.classList.add('highlight-flash');
+          setTimeout(() => {
+            el.classList.remove('highlight-flash');
+            if (prevTab === null) el.removeAttribute('tabindex');
+            else el.setAttribute('tabindex', prevTab);
+          }, 1800);
+        } else {
+          // restore tabindex when not adding highlight
           if (prevTab === null) el.removeAttribute('tabindex');
           else el.setAttribute('tabindex', prevTab);
-        }, 1800);
+        }
       } catch (e) {
         // ignore
       }
