@@ -31,29 +31,15 @@ const HomePage = () => {
             <p className="text-xs uppercase tracking-[0.4em] text-white/50">Swedish esports and community</p>
             <h1 className="font-display text-5xl uppercase tracking-[0.2em] text-snow md:text-6xl">jinx esport</h1>
             <div className="flex flex-col gap-4">
-              <div className="flex flex-wrap gap-3">
+              <div className="flex justify-center md:justify-start">
                 <Link
-                  to="/teams"
-                  className="inline-flex items-center rounded-full bg-fuchsia px-6 py-3 text-xs font-semibold uppercase tracking-[0.35em] text-void"
+                  to="/#membership-form"
+                  className="inline-flex items-center rounded-full bg-fuchsia px-8 py-4 text-sm font-semibold uppercase tracking-[0.35em] text-void transition hover:bg-white hover:shadow-glow transform hover:scale-105"
                 >
-                  Teams
+                  Join jinx esport
                 </Link>
-                <Link
-                  to="/about"
-                  className="inline-flex items-center rounded-full bg-white/10 px-6 py-3 text-xs font-semibold uppercase tracking-[0.35em] text-snow transition hover:bg-white/20 hover:text-fuchsia"
-                >
-                  About
-                </Link>
-                <a
-                  href="https://www.netshirt.se/foreningsklader/jinx-e-sport"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="inline-flex items-center rounded-full bg-white/10 px-6 py-3 text-xs font-semibold uppercase tracking-[0.35em] text-snow transition hover:bg-white/20 hover:text-fuchsia"
-                >
-                  Merch
-                </a>
               </div>
-              <div className="flex items-center gap-4">
+              <div className="flex items-center justify-center md:justify-start gap-4">
                 <a
                   href="https://discord.com/invite/M39E4MVAeN"
                   target="_blank"
