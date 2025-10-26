@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 
 const GDPRPage = () => {
-  const lastUpdated = 'October 26, 2025';
+  const lastUpdated = 'October 25, 2025';
 
   return (
     <div className="space-y-6">

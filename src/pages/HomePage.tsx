@@ -108,17 +108,11 @@ const HomePage = () => {
         </div>
       </section>
 
-      {/* Twitter/X feed removed temporarily */}
-
       <div id="membership-form" className="transition-all duration-500">
         <MembershipForm />
       </div>
 
-      {/* Scroll to membership form when linking with hash */}
-      <ScrollToMembership />
-
-      {/* local helper to perform smooth scroll when location.hash is set to the membership anchor */}
-      
+      <ScrollToMembership />      
 
       <section className="rounded-[2.75rem] border border-white/10 bg-carbon/95 p-10 shadow-[0_22px_60px_rgba(255,0,127,0.16)] md:p-16">
         <div className="space-y-10">

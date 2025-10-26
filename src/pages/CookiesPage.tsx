@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+const lastUpdated = 'October 26, 2025';
 
 const CookiesPage = () => {
   return (
@@ -6,7 +7,7 @@ const CookiesPage = () => {
       <div className="text-center md:text-left">
         <p className="text-xs uppercase tracking-[0.4em] text-white/50">Privacy & Data</p>
         <h1 className="font-display text-3xl uppercase tracking-[0.25em] text-snow md:text-4xl">Cookies Policy</h1>
-        <p className="mt-2 text-sm text-white/60">Last updated: October 26, 2025</p>
+        <p className="mt-2 text-sm text-white/60">Last updated on {lastUpdated}.</p>
       </div>
 
       <section className="rounded-[1.5rem] border border-white/10 bg-carbon/90 p-6 space-y-4">
