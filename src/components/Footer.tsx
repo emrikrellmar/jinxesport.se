@@ -1,5 +1,4 @@
 import { NavLink } from 'react-router-dom';
-import logo from '../assets/jinx_logo.png';
 import iconX from '../assets/xlogo.png';
 import iconDiscord from '../assets/discordlogo.png';
 
@@ -11,18 +10,15 @@ const Footer = () => {
   return (
     <footer className="bg-carbon text-white">
       <div className="w-full bg-carbon/95">
-        <div className="mx-auto max-w-7xl px-4 py-6">
+        <div className="w-full px-4 py-6">
           {/* simplified container so the footer blends more with the page */}
           <div className="p-6 md:p-8">
             <div className="grid grid-cols-1 gap-6 md:grid-cols-4 md:items-start">
               {/* Branding / Contact */}
               <div className="md:col-span-1">
-                <div className="flex items-center gap-3">
-                  <img src={logo} alt="Jinx" className="h-10 w-auto" />
-                  <div>
-                    <div className="font-display text-lg text-snow">Jinx Esport</div>
-                    <div className="text-xs text-white/60">Let's find harmony together.</div>
-                  </div>
+                <div>
+                  <div className="font-display text-lg text-snow">Jinx Esport</div>
+                  <div className="text-xs text-white/60">Let's find harmony together.</div>
                 </div>
 
                 <div className="mt-3 text-sm">
