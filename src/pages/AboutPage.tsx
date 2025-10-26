@@ -54,17 +54,35 @@ const AboutPage = () => {
 
   useEffect(() => {
     let mounted = true;
-    fetch('/api/notion-members-count')
-      .then((r) => r.json())
-      .then((data) => {
-  if (!mounted) return;
-  if (data && typeof data.count === 'number') setMembersCount(data.count);
-  else console.warn('Could not read members count', data);
-      })
-      .catch((err) => {
-        console.error('Failed to fetch members count', err);
+    (async () => {
+      try {
+        // In Vite dev mode this will return the raw TS/JS file under /api/; handle non-JSON gracefully.
+        const resp = await fetch('/api/notion-members-count');
+        const contentType = resp.headers.get('content-type') || '';
+
         if (!mounted) return;
-      });
+
+        if (!resp.ok) {
+          const txt = await resp.text();
+          console.warn('Notion count endpoint returned non-OK status', resp.status, txt.slice(0, 200));
+          return;
+        }
+
+        if (!contentType.includes('application/json')) {
+          // Likely running in Vite dev where the file is served as JS; skip parsing and warn.
+          const txt = await resp.text();
+          console.warn('Notion members count: unexpected content-type, skipping JSON parse. Sample:', txt.slice(0, 300));
+          return;
+        }
+
+        const data = await resp.json();
+        if (!mounted) return;
+        if (data && typeof data.count === 'number') setMembersCount(data.count);
+        else console.warn('Could not read members count', data);
+      } catch (err) {
+        console.error('Failed to fetch members count', err);
+      }
+    })();
 
     return () => {
       mounted = false;
