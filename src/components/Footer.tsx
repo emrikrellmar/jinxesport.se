@@ -1,9 +1,6 @@
 import { NavLink } from 'react-router-dom';
 import iconX from '../assets/xlogo.png';
 import iconDiscord from '../assets/discordlogo.png';
-import partner1 from '../assets/partner1.png';
-import partner2 from '../assets/partner2.png';
-import sponsor2 from '../assets/sponsor2.png';
 
 const Footer = () => {
   const year = new Date().getFullYear();
@@ -16,18 +13,7 @@ const Footer = () => {
         <div className="w-full px-4 py-6">
           {/* simplified container so the footer blends more with the page */}
           <div className="p-6 md:p-8">
-            {/* partner / sponsor logos (clickable) */}
-            <div className="mb-6 flex items-center justify-center gap-6">
-              <a href="https://www.svenskesport.se/" target="_blank" rel="noopener noreferrer" aria-label="Svenske Sport">
-                <img src={partner1} alt="Svenske Sport" className="h-10 w-auto object-contain" />
-              </a>
-              <a href="https://esplay.com/" target="_blank" rel="noopener noreferrer" aria-label="Esplay">
-                <img src={partner2} alt="Esplay" className="h-10 w-auto object-contain" />
-              </a>
-              <a href="https://avesta.se/" target="_blank" rel="noopener noreferrer" aria-label="Avesta">
-                <img src={sponsor2} alt="Avesta" className="h-10 w-auto object-contain" />
-              </a>
-            </div>
+            {/* partner/sponsor logos moved to the Sponsors section on the Home page */}
 
             <div className="grid grid-cols-1 gap-6 md:grid-cols-4 md:items-start">
               {/* Branding / Contact */}

@@ -9,13 +9,13 @@ import iconDiscord from "../assets/discordlogo.png";
 import MembershipForm from "../components/MembershipForm";
 
 const sponsors = [
-  { name: "Ajotech AB", logo: sponsorAjotech, size: "large" as const },
-  { name: "JNIX Collective", logo: sponsorCollective, size: "large" as const },
+  { name: "Ajotech AB", logo: sponsorAjotech, size: "large" as const, url: undefined },
+  { name: "JNIX Collective", logo: sponsorCollective, size: "large" as const, url: 'https://avesta.se/' },
 ];
 
 const partners = [
-  { name: "Digital Alliance", logo: partnerAlliance },
-  { name: "Community Partner", logo: partnerCommunity },
+  { name: "Svenske Sport", logo: partnerAlliance, url: 'https://www.svenskesport.se/' },
+  { name: "Esplay", logo: partnerCommunity, url: 'https://esplay.com/' },
 ];
 
 const sponsorTiles = Array.from({ length: 6 }, (_, index) => sponsors[index % sponsors.length]);
@@ -130,12 +130,13 @@ const HomePage = () => {
                       key={`marquee-a-${sponsor.name}-${index}`}
                       className="flex items-center justify-center rounded-[1.35rem] border border-white/10 bg-white/5 px-6 py-6 mr-6"
                     >
-                      <img
-                        src={sponsor.logo}
-                        alt={sponsor.name}
-                        className={`${sizeClass} w-auto object-contain`}
-                        loading="lazy"
-                      />
+                      {sponsor.url ? (
+                        <a href={sponsor.url} target="_blank" rel="noopener noreferrer" aria-label={sponsor.name}>
+                          <img src={sponsor.logo} alt={sponsor.name} className={`${sizeClass} w-auto object-contain`} loading="lazy" />
+                        </a>
+                      ) : (
+                        <img src={sponsor.logo} alt={sponsor.name} className={`${sizeClass} w-auto object-contain`} loading="lazy" />
+                      )}
                     </div>
                   );
                 })}
@@ -148,12 +149,13 @@ const HomePage = () => {
                       key={`marquee-b-${sponsor.name}-${index}`}
                       className="flex items-center justify-center rounded-[1.35rem] border border-white/10 bg-white/5 px-6 py-6 mr-6"
                     >
-                      <img
-                        src={sponsor.logo}
-                        alt={sponsor.name}
-                        className={`${sizeClass} w-auto object-contain`}
-                        loading="lazy"
-                      />
+                      {sponsor.url ? (
+                        <a href={sponsor.url} target="_blank" rel="noopener noreferrer" aria-label={sponsor.name}>
+                          <img src={sponsor.logo} alt={sponsor.name} className={`${sizeClass} w-auto object-contain`} loading="lazy" />
+                        </a>
+                      ) : (
+                        <img src={sponsor.logo} alt={sponsor.name} className={`${sizeClass} w-auto object-contain`} loading="lazy" />
+                      )}
                     </div>
                   );
                 })}
@@ -174,7 +176,13 @@ const HomePage = () => {
                     key={partner.name}
                     className="flex items-center justify-center rounded-[1.65rem] border border-white/10 bg-white/5 px-4 py-6"
                   >
-                    <img src={partner.logo} alt={partner.name} className="h-14 w-auto object-contain" loading="lazy" />
+                    {partner.url ? (
+                      <a href={partner.url} target="_blank" rel="noopener noreferrer" aria-label={partner.name}>
+                        <img src={partner.logo} alt={partner.name} className="h-14 w-auto object-contain" loading="lazy" />
+                      </a>
+                    ) : (
+                      <img src={partner.logo} alt={partner.name} className="h-14 w-auto object-contain" loading="lazy" />
+                    )}
                   </div>
                 ))}
               </div>
