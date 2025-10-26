@@ -1,4 +1,5 @@
-﻿import braxenPhoto from '../assets/Braxen.png';
+﻿import { useEffect, useState } from 'react';
+import braxenPhoto from '../assets/Braxen.png';
 import silhouetteMale from '../assets/silhouette.png';
 import catrinPhoto from '../assets/catrin.png';
 
@@ -48,8 +49,30 @@ const leadership = [
   },
 ];
 
-const AboutPage = () => (
-  <div className="flex flex-col gap-20 pb-12">
+const AboutPage = () => {
+  const [membersCount, setMembersCount] = useState<number | null>(null);
+
+  useEffect(() => {
+    let mounted = true;
+    fetch('/api/notion-members-count')
+      .then((r) => r.json())
+      .then((data) => {
+  if (!mounted) return;
+  if (data && typeof data.count === 'number') setMembersCount(data.count);
+  else console.warn('Could not read members count', data);
+      })
+      .catch((err) => {
+        console.error('Failed to fetch members count', err);
+        if (!mounted) return;
+      });
+
+    return () => {
+      mounted = false;
+    };
+  }, []);
+
+  return (
+    <div className="flex flex-col gap-20 pb-12">
     <section className="relative overflow-hidden rounded-3xl border border-white/10 bg-carbon/80 px-8 py-12 shadow-[0_22px_60px_rgba(255,0,127,0.16)] md:flex md:items-stretch md:gap-12 md:px-14">
       <div className="pointer-events-none absolute inset-0 -z-10 opacity-70">
         <div className="absolute left-1/2 top-0 h-48 w-48 -translate-x-1/2 translate-y-[-40%] rounded-full bg-fuchsia/20 blur-3xl" />
@@ -60,6 +83,11 @@ const AboutPage = () => (
         <h1 className="font-display text-4xl uppercase tracking-[0.3em] text-snow md:text-5xl">
           Built On Competition And Care
         </h1>
+        {membersCount !== null ? (
+          <div className="mt-2 inline-block rounded-full bg-white/5 px-3 py-1 text-sm font-semibold text-snow">Medlemmar: {membersCount}</div>
+        ) : (
+          <div className="mt-2 inline-block rounded-full bg-white/5 px-3 py-1 text-sm text-white/60">Läser medlemmar…</div>
+        )}
         <p className="max-w-2xl text-base text-white/70 md:text-lg">
           Founded in 2025 and based in Avesta, Sweden, jinx esport is a growing esports organization built on two strong
           foundations: competitive excellence and social responsibility. Our mission is to combine elite-level gaming
@@ -168,7 +196,8 @@ const AboutPage = () => (
       </div>
     </section>
   </div>
-);
+  );
+};
 
 export default AboutPage;
 
