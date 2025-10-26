@@ -61,10 +61,17 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
         });
 
         const results = resp.results ?? [];
+        let debugParents: any[] = [];
         for (const r of results) {
-          const parent = r?.parent;
-          // parent can be { database_id: '...' } when the page belongs to a database
-          if (parent && (parent as any).database_id === notionDatabaseId) total += 1;
+          const parent = r?.parent as any;
+          // parent can have several shapes depending on SDK/runtime. Try common fields.
+          const parentDbId = parent?.database_id ?? parent?.database?.id ?? parent?.databaseId ?? parent?.id ?? null;
+          if (parentDbId === notionDatabaseId) total += 1;
+          // collect a few parents for debug if needed
+          if (debugParents.length < 3) debugParents.push(parent);
+        }
+        if ((process.env.NODE_ENV !== 'production') && debugParents.length > 0) {
+          console.debug('notion-members-count: sample parents', debugParents);
         }
 
         next_cursor = resp.has_more ? (resp.next_cursor as string | undefined) : undefined;
