@@ -82,18 +82,31 @@ const CookieConsent = () => {
   if (consent !== 'unset') return null;
 
   return (
-    <div className="fixed inset-x-6 bottom-6 z-50 rounded-2xl border border-white/10 bg-carbon/95 p-6 shadow-lg md:inset-x-12">
-      <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
-        <div className="space-y-2">
-          <div className="text-sm font-semibold">Vi använder cookies</div>
-          <p className="text-sm text-white/60">Vi använder cookies och liknande tekniker för att förbättra din upplevelse, analysera trafik och visa relevanta annonser. Du kan acceptera eller neka samtycke för analyser och annonspixlar.</p>
-          <p className="text-sm text-white/60">Läs mer i vår <Link to="/cookies" className="text-fuchsia">Cookies Policy</Link> eller i vår <Link to="/gdpr" className="text-fuchsia">Privacy Policy</Link>.</p>
-        </div>
+    <div className="fixed bottom-4 right-4 z-50">
+      <div className="flex items-center gap-3 rounded-full bg-carbon/95 border border-white/10 px-3 py-2 shadow-lg text-xs">
+        <div className="mr-1 font-semibold">Cookies</div>
+        <div className="text-white/60 max-w-[18rem] truncate">Vi använder cookies för analys och funktionalitet.</div>
 
-        <div className="flex shrink-0 items-center gap-3 pt-3 md:pt-0">
-          <button onClick={rejectAll} className="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-white/80">Neka</button>
-          <Link to="/cookies" className="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-white/80">Hantera</Link>
-          <button onClick={acceptAll} className="rounded-full bg-fuchsia px-4 py-2 text-sm font-semibold text-void">Acceptera alla</button>
+        <div className="ml-2 flex items-center gap-2">
+          <button
+            onClick={rejectAll}
+            className="rounded-full border border-white/10 bg-white/5 px-2 py-1 text-xs text-white/80"
+            aria-label="Neka cookies"
+          >
+            Neka
+          </button>
+
+          <Link to="/cookies" className="rounded-full border border-white/10 bg-white/5 px-2 py-1 text-xs text-white/80">
+            Mer
+          </Link>
+
+          <button
+            onClick={acceptAll}
+            className="rounded-full bg-fuchsia px-3 py-1 text-xs font-semibold text-void"
+            aria-label="Acceptera cookies"
+          >
+            Acceptera
+          </button>
         </div>
       </div>
     </div>
