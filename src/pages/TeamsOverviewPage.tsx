@@ -1,4 +1,5 @@
 ﻿import { Link } from "react-router-dom";
+import esportDivisions from '../assets/esportdivisions.png';
 
 const teams = [
   {
@@ -20,14 +21,22 @@ const teams = [
 
 const TeamsOverviewPage = () => (
   <div className="space-y-16">
-    <section className="rounded-[2.75rem] border border-white/10 bg-carbon/95 p-10 shadow-[0_22px_60px_rgba(255,0,127,0.16)] md:p-16">
-  <p className="text-xs uppercase tracking-[0.4em] text-white/50">jinx esport Teams</p>
-      <h1 className="mt-3 font-display text-4xl uppercase tracking-[0.25em] text-snow md:text-5xl">
-        Competing Across Titles
-      </h1>
-      <p className="mt-4 max-w-2xl text-base text-white/65">
-  Explore every roster representing jinx esport. From our established Counter-Strike squads to the upcoming League of Legends lineup, each team shares the same ambition: structure, development, and Swedish esports excellence.
-      </p>
+    <section className="rounded-[2.75rem] border border-white/10 bg-carbon/95 p-6 shadow-[0_22px_60px_rgba(255,0,127,0.16)] md:p-12 md:flex md:items-center md:justify-between">
+      <div className="md:flex-1 md:pr-8">
+        <p className="text-xs uppercase tracking-[0.4em] text-white/50">jinx esport Teams</p>
+        <h1 className="mt-3 font-display text-4xl uppercase tracking-[0.25em] text-snow md:text-5xl">
+          Competing Across Titles
+        </h1>
+        <p className="mt-4 max-w-2xl text-base text-white/65">
+          Explore every roster representing jinx esport. From our established Counter-Strike squads to the upcoming League of Legends lineup, each team shares the same ambition: structure, development, and Swedish esports excellence.
+        </p>
+      </div>
+
+      <div className="mt-6 md:mt-0 md:w-[28rem] md:flex-shrink-0">
+        <div className="relative overflow-hidden rounded-2xl">
+          <img src={esportDivisions} alt="Esport divisions" className="w-full h-auto object-cover rounded-2xl" />
+        </div>
+      </div>
     </section>
 
     <section className="grid gap-8 md:grid-cols-2 xl:grid-cols-3">
