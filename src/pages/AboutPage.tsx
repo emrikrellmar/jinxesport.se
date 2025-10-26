@@ -69,23 +69,7 @@ const AboutPage = () => {
         }
 
         if (!contentType.includes('application/json')) {
-          // If we're in dev, try a static JSON fallback in public/ so local dev can show a count.
-          if (import.meta.env.DEV) {
-            try {
-              const devResp = await fetch('/notion-members-count.json');
-              if (devResp.ok) {
-                const d = await devResp.json();
-                if (!mounted) return;
-                if (d && typeof d.count === 'number') {
-                  setMembersCount(d.count);
-                }
-                return;
-              }
-            } catch (err) {
-              console.warn('Failed to load dev fallback for members count', err);
-            }
-          }
-
+          // Unexpected content-type (likely dev server serving source files). Skip parsing and warn.
           const txt = await resp.text();
           console.warn('Notion members count: unexpected content-type, skipping JSON parse. Sample:', txt.slice(0, 300));
           return;
