@@ -37,16 +37,39 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     let total = 0;
 
     // Page through results counting entries. Notion doesn't provide a total count field, so iterate.
-    do {
-      const resp: any = await (notion as any).databases.query({
-        database_id: notionDatabaseId,
-        start_cursor: next_cursor,
-        page_size: 100,
-      });
+    // Prefer databases.query when available. Some versions of the Notion client expose query,
+    // but if it's missing (runtime shape differences), fallback to search + filtering by parent.database_id.
+    if ((notion as any).databases && typeof (notion as any).databases.query === 'function') {
+      do {
+        const resp: any = await (notion as any).databases.query({
+          database_id: notionDatabaseId,
+          start_cursor: next_cursor,
+          page_size: 100,
+        });
 
-      total += resp.results?.length ?? 0;
-      next_cursor = resp.has_more ? (resp.next_cursor as string | undefined) : undefined;
-    } while (next_cursor);
+        total += resp.results?.length ?? 0;
+        next_cursor = resp.has_more ? (resp.next_cursor as string | undefined) : undefined;
+      } while (next_cursor);
+    } else {
+      // Fallback: use search and count pages whose parent.database_id matches our database
+      do {
+        const resp: any = await (notion as any).search({
+          query: '',
+          filter: { property: 'object', value: 'page' },
+          start_cursor: next_cursor,
+          page_size: 100,
+        });
+
+        const results = resp.results ?? [];
+        for (const r of results) {
+          const parent = r?.parent;
+          // parent can be { database_id: '...' } when the page belongs to a database
+          if (parent && (parent as any).database_id === notionDatabaseId) total += 1;
+        }
+
+        next_cursor = resp.has_more ? (resp.next_cursor as string | undefined) : undefined;
+      } while (next_cursor);
+    }
 
     res.status(200).json({ count: total });
   } catch (error) {
