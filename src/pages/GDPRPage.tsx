@@ -15,8 +15,8 @@ const GDPRPage = () => {
         <h2 className="mt-4 text-lg font-semibold">Why we collect it</h2>
         <p className="mt-2 text-sm text-white/60">We use this information to process membership applications, contact applicants, and manage membership records for the association. The personal number helps us uniquely identify members for administrative purposes.</p>
 
-        <h2 className="mt-4 text-lg font-semibold">Where it's stored</h2>
-        <p className="mt-2 text-sm text-white/60">Membership data is stored in a Notion database controlled by Jinx Esport. Access is restricted to authorized administrators only.</p>
+  <h2 className="mt-4 text-lg font-semibold">Where it's stored</h2>
+  <p className="mt-2 text-sm text-white/60">Membership data is stored in a Notion database controlled by jinx esport. Access is restricted to authorized administrators only.</p>
 
         <h2 className="mt-4 text-lg font-semibold">How long we keep it</h2>
         <p className="mt-2 text-sm text-white/60">We retain membership records for as long as they are relevant to the association's activities. If you request deletion, we will remove or anonymize your data subject to any legal or administrative retention requirements.</p>

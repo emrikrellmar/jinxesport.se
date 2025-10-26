@@ -110,9 +110,9 @@ const MembershipForm = () => {
           <div className="space-y-4 text-center md:text-left">
           <p className="text-xs uppercase tracking-[0.4em] text-fuchsia/70">Join The Club</p>
           <h2 className="font-display text-3xl uppercase tracking-[0.25em] text-snow md:text-4xl">
-            Become A Member Of Jinx Esport
+            Become A Member Of jinx esport
           </h2>
-          <p className="text-base text-white/60">Fill out the form below to apply for membership in the Jinx Esport association.</p>
+          <p className="text-base text-white/60">Fill out the form below to apply for membership in the jinx esport association.</p>
           <p className="mt-2 text-xs italic text-white/50">Only Swedish citizens with Personal Number are able to currently fill in the form.</p>
         </div>
 
@@ -221,7 +221,7 @@ const MembershipForm = () => {
                 onChange={handleChange}
                 className={checkboxClasses("optInEmails")}
               />
-              I agree to receive updates and emails from Jinx Esport (optional).
+              I agree to receive updates and emails from jinx esport (optional).
             </label>
             <label className="inline-flex items-center gap-3 text-sm text-white/70">
               <input
@@ -233,7 +233,7 @@ const MembershipForm = () => {
                 aria-invalid={missingFields.includes("gdprConsent")}
                 aria-required="true"
               />
-              I consent to Jinx Esport storing my details in accordance with GDPR. <span className="ml-1 font-medium text-rose-400">*</span>
+              I consent to jinx esport storing my details in accordance with GDPR. <span className="ml-1 font-medium text-rose-400">*</span>
             </label>
           </div>
 

@@ -19,7 +19,7 @@ const Footer = () => {
               {/* Branding / Contact */}
               <div className="md:col-span-1">
                 <div>
-                  <div className="text-xs text-white/60">© {year} Jinx Esport. All rights reserved</div>
+                  <div className="text-xs text-white/60">© {year} jinx esport. All rights reserved</div>
                 </div>
 
                 <div className="mt-4 flex items-center gap-3">
