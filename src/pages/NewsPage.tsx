@@ -127,7 +127,7 @@ const NewsPage = () => {
               {posts.map((post) => (
                 <article
                   key={post.id}
-                  className="group rounded-[2.25rem] border border-white/10 bg-carbon/90 p-8 shadow-[0_22px_60px_rgba(255,0,127,0.16)] transition hover:border-fuchsia/40 hover:bg-carbon"
+                  className="group rounded-[2.25rem] border border-white/10 bg-carbon/90 p-8 shadow-[0_22px_60px_rgba(255,0,127,0.16)] transition hover:border-fuchsia/40 hover:bg-carbon flex flex-col h-full"
                 >
                   {/* Picture at the top */}
                   {post.featuredImage && (
@@ -146,27 +146,29 @@ const NewsPage = () => {
                     {post.title}
                   </h2>
                   
-                  {/* Content below title */}
-                  <p className="text-sm text-white/65 line-clamp-3 break-words overflow-wrap-anywhere max-w-full mb-4">
+                  {/* Content below title - this will grow to fill space */}
+                  <p className="text-sm text-white/65 line-clamp-3 break-words overflow-wrap-anywhere max-w-full mb-6 flex-grow">
                     {truncateContent(post.content)}
                   </p>
                   
-                  {/* Read More button below content */}
-                  <div className="mb-4">
-                    <Link
-                      to={`/news/${post.slug}`}
-                      state={{ post }}
-                      className="inline-flex items-center rounded-full bg-white/10 px-6 py-3 text-xs font-semibold uppercase tracking-[0.35em] text-snow transition hover:bg-white/20 hover:text-fuchsia"
-                    >
-                      Read More
-                    </Link>
-                  </div>
-                  
-                  {/* Date & Author at bottom with border */}
-                  <div className="border-t border-white/10 pt-4">
-                    <p className="text-xs uppercase tracking-[0.4em] text-fuchsia/70">
-                      {formatDate(post.date)} • {post.author}
-                    </p>
+                  {/* Read More button and Date/Author always at bottom */}
+                  <div className="mt-auto space-y-4">
+                    <div>
+                      <Link
+                        to={`/news/${post.slug}`}
+                        state={{ post }}
+                        className="inline-flex items-center rounded-full bg-white/10 px-6 py-3 text-xs font-semibold uppercase tracking-[0.35em] text-snow transition hover:bg-white/20 hover:text-fuchsia"
+                      >
+                        Read More
+                      </Link>
+                    </div>
+                    
+                    {/* Date & Author at bottom with border */}
+                    <div className="border-t border-white/10 pt-4">
+                      <p className="text-xs uppercase tracking-[0.4em] text-fuchsia/70">
+                        {formatDate(post.date)} • {post.author}
+                      </p>
+                    </div>
                   </div>
                 </article>
               ))}
