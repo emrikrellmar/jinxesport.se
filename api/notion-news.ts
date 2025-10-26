@@ -96,7 +96,21 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       
       const published = properties.Published?.checkbox || false;
       const date = properties.Date?.date?.start || new Date().toISOString();
-      const featuredImage = extractPlainText(properties['Featured image']?.rich_text || []);
+      
+      // Handle different featured image field types
+      let featuredImage: string | undefined;
+      if (properties['Featured image']?.files && properties['Featured image'].files.length > 0) {
+        // Handle file upload field
+        const file = properties['Featured image'].files[0];
+        featuredImage = file.file?.url || file.external?.url;
+      } else if (properties['Featured image']?.url) {
+        // Handle URL field
+        featuredImage = properties['Featured image'].url;
+      } else if (properties['Featured image']?.rich_text) {
+        // Handle rich text field (URL as text)
+        const imageUrl = extractPlainText(properties['Featured image'].rich_text);
+        featuredImage = imageUrl && (imageUrl.startsWith('http') || imageUrl.startsWith('/')) ? imageUrl : undefined;
+      }
 
       return {
         id: page.id,
@@ -105,7 +119,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
         author,
         published,
         date,
-        featuredImage: featuredImage || undefined,
+        featuredImage,
         slug: createSlug(title),
       };
     });
