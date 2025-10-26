@@ -27,7 +27,7 @@ const HomePage = () => {
         <div className="relative grid gap-12 md:grid-cols-[1.1fr_0.9fr] md:items-center">
           <div className="space-y-6">
             <p className="text-xs uppercase tracking-[0.4em] text-white/50">Swedish esports and community</p>
-            <h1 className="font-display text-5xl uppercase tracking-[0.2em] text-snow md:text-6xl">Jinx Esport</h1>
+            <h1 className="font-display text-5xl uppercase tracking-[0.2em] text-snow md:text-6xl">jinx esport</h1>
             <div className="flex flex-col gap-4">
               <div className="flex flex-wrap gap-3">
                 <Link
@@ -80,7 +80,7 @@ const HomePage = () => {
             </div>
             <img
               src={jerseyImage}
-              alt="Jinx Esport jersey"
+              alt="jinx esport jersey"
               className="hero-float relative w-full max-w-2xl drop-shadow-[0_45px_90px_rgba(255,0,127,0.35)]"
             />
           </div>
@@ -93,16 +93,16 @@ const HomePage = () => {
           <h2 className="font-display text-3xl uppercase tracking-[0.25em] text-snow md:text-4xl">
             Founded In Avesta, Sweden
           </h2>
-          <p className="text-base text-white/70">
-            Founded in 2025 and based in Avesta, Sweden, J!nX Esport is a growing esports organization built on two strong
+            <p className="text-base text-white/70">
+            Founded in 2025 and based in Avesta, Sweden, jinx esport is a growing esports organization built on two strong
             foundations: competitive excellence and social responsibility. Our mission is to combine elite-level gaming
             with community work that promotes safety, inclusion, and belonging for young people who struggle to fit into
             traditional environments.
           </p>
-          <p className="text-base text-white/60">
-            Every match we play and every program we run is meant to prove that high-level esports and meaningful
-            community impact can grow together inside the same club.
-          </p>
+                <p className="text-base text-white/60">
+                Every match we play and every program we run is meant to prove that high-level esports and meaningful
+                community impact can grow together inside the same club.
+              </p>
         </div>
       </section>
 
@@ -166,9 +166,9 @@ const HomePage = () => {
           <div className="grid gap-6 lg:grid-cols-[2fr_1fr]">
             <div className="space-y-4 rounded-[2.25rem] border border-white/10 bg-carbon/90 p-8">
               <p className="text-xs uppercase tracking-[0.4em] text-white/50">Partners</p>
-              <p className="text-base text-white/60">
+                <p className="text-base text-white/60">
                 Partners collaborate with us on events and initiatives that enrich our players, supporters, and the
-                community around Jinx Esport.
+                community around jinx esport.
               </p>
               <div className="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-2">
                 {partners.map((partner) => (
@@ -189,8 +189,8 @@ const HomePage = () => {
             </div>
             <div className="rounded-[2.25rem] border border-white/10 bg-carbon/90 p-8">
               <p className="text-xs uppercase tracking-[0.4em] text-white/50">Work With Us</p>
-              <p className="mt-3 text-sm text-white/60">
-                Want to be visible alongside Jinx Esport? Reach out and we will tailor a partnership that matches your
+                <p className="mt-3 text-sm text-white/60">
+                Want to be visible alongside jinx esport? Reach out and we will tailor a partnership that matches your
                 goals.
               </p>
               <Link

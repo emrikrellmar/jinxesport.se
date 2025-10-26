@@ -34,7 +34,7 @@ const ContactPage = () => (
   <div className="flex flex-col gap-16 pb-12">
     <section className="rounded-[2.75rem] border border-white/10 bg-carbon/90 px-8 py-12 text-center shadow-[0_22px_60px_rgba(255,0,127,0.16)] md:px-16">
       <p className="text-xs uppercase tracking-[0.4em] text-fuchsia/70">Contact</p>
-      <h1 className="mt-3 font-display text-4xl uppercase tracking-[0.3em] text-snow md:text-5xl">Connect With J!nX</h1>
+  <h1 className="mt-3 font-display text-4xl uppercase tracking-[0.3em] text-snow md:text-5xl">Connect with jinx esport</h1>
       <p className="mx-auto mt-6 max-w-3xl text-base text-white/70 md:text-lg">
         Reach out to the team for competitive opportunities, community partnerships, or support. We welcome every message
         from people who share our passion for esports and a safer space for young players.
