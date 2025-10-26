@@ -1,16 +1,7 @@
 ﻿import { useState } from "react";
 import { NavLink } from "react-router-dom";
 import logo from "../assets/jinx_logo.png";
-import iconX from "../assets/xlogo.png";
-import iconDiscord from "../assets/discordlogo.png";
-
-type ExternalLink = {
-  label: string;
-  href: string;
-  variant: "primary" | "ghost";
-  icon?: string;
-  iconOnly?: boolean;
-};
+// social icons removed from header
 
 type NavSection =
   | { type: "link"; label: string; to: string }
@@ -23,12 +14,7 @@ const navStructure: NavSection[] = [
   { type: "link", label: "Contact", to: "/contact" },
 ];
 
-const externalLinks: ExternalLink[] = [
-  { label: "Merch", href: "https://www.netshirt.se/foreningsklader/jinx-e-sport", variant: "ghost" },
-  { label: "Discord", href: "https://discord.com/invite/M39E4MVAeN", variant: "ghost", icon: iconDiscord, iconOnly: true },
-  { label: "X/Twitter", href: "https://x.com/jinxesport", variant: "ghost", icon: iconX, iconOnly: true },
-];
-
+// externalLinks removed — replaced by single CTA
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const linkBase =
@@ -47,37 +33,7 @@ const Navbar = () => {
     </NavLink>
   );
 
-  const renderExternal = (link: ExternalLink, onClick?: () => void) => {
-    const baseClasses = link.iconOnly
-      ? "inline-flex items-center justify-center text-snow transition hover:text-fuchsia"
-      : "inline-flex items-center justify-center rounded-full border px-5 py-2 text-[0.75rem] font-semibold uppercase tracking-[0.45em]";
-    const variants = link.iconOnly
-      ? ""
-      : {
-          primary: "border-fuchsia bg-fuchsia text-void hover:bg-white hover:border-white",
-          ghost: "border-white/30 text-snow hover:border-fuchsia hover:text-fuchsia",
-        }[link.variant];
-
-    return (
-      <a
-        key={link.href}
-        href={link.href}
-        target="_blank"
-        rel="noreferrer"
-        className={[baseClasses, variants].filter(Boolean).join(" ")}
-        onClick={onClick}
-      >
-        {link.icon ? (
-          <>
-            <img src={link.icon} alt="X" className="h-10 w-10 object-contain" />
-            {link.iconOnly ? <span className="sr-only">{link.label}</span> : null}
-          </>
-        ) : (
-          link.label
-        )}
-      </a>
-    );
-  };
+  // renderExternal removed — external links moved out of header
 
   return (
     <header className="fixed inset-x-0 top-0 z-50 border-b border-white/10 bg-carbon/95 py-4 backdrop-blur-xl">
@@ -137,7 +93,13 @@ const Navbar = () => {
               )
             )}
             <div className="mt-2 grid gap-3">
-              {externalLinks.map((link) => renderExternal(link, () => setIsOpen(false)))}
+              <NavLink
+                to="/#membership-form"
+                onClick={() => setIsOpen(false)}
+                className="inline-flex w-full items-center justify-center rounded-full bg-fuchsia px-4 py-3 text-sm font-semibold uppercase tracking-[0.35em] text-void"
+              >
+                Become a member
+              </NavLink>
             </div>
           </div>
         </nav>
