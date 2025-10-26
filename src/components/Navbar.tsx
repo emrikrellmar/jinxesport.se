@@ -89,7 +89,7 @@ const Navbar = () => {
           <span className="hidden font-display text-lg uppercase tracking-[0.35em] text-snow md:inline">Esport</span>
         </NavLink>
 
-        <nav className="hidden flex-1 items-center justify-center gap-6 md:flex">
+        <nav className="hidden md:flex absolute left-1/2 transform -translate-x-1/2 items-center gap-6">
           {navStructure.map((item, index) =>
             item.type === "divider" ? (
               <span
